@@ -2,6 +2,7 @@
 
 
 <p><%= @user.email %></p>
-<% @user.tweets.each do |tweet| %>
+<% @user.tweets.reverse.each do |tweet| %>
   <p><%= tweet.content %></p>
+  -------------------------------------------------------------
 <% end %>
