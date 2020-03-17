@@ -3,8 +3,10 @@
 
 <% @users.each do |user| %>
   <p><%= user.email %></p>
-  <%= link_to user.email, home_show_path %>
+  <%= link_to user.email, user %>
    <%= user.tweets.each do |tweet| %>
-  <p><%= tweet.content %></p>
+  <p><%= tweet.content %>
+  	<%= Tweet.first.created_at %>
+  </p>
  <% end %>
 <% end %>

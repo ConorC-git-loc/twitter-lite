@@ -1,0 +1,18 @@
+
+<% if user_signed_in? %>
+<h3><%= current_user.email %></h3>
+<% end %>
+
+Create: <%= link_to "New Tweet", new_tweet_path(@tweets) %>
+
+<ul>
+<% @tweets.reverse.each do |tweet| %>
+<strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
+<%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+<p><%= tweet.content %></p>
+— — — — — — — — — — — — — — — — — — — — — — — — — — — -
+<br>
+<br>
+<% end %>
+</ul>
+
