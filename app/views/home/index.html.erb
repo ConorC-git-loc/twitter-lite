@@ -1,0 +1,10 @@
+<h1>Home#index</h1>
+<p>Fake Twitter</p>
+
+<% @users.each do |user| %>
+  <p><%= user.email %></p>
+  <%= link_to user.email, home_show_path %>
+   <%= user.tweets.each do |tweet| %>
+  <p><%= tweet.content %></p>
+ <% end %>
+<% end %>
