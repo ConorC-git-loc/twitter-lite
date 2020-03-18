@@ -1,8 +1,14 @@
 FactoryBot.define do
   
   factory :user do
-    username "Conor"
-    email "conor@gmail.com"
-    password "password"
+    username {"Erica"}
+    email {"erica@gmail.com"}
+    password {"password"}
+  end
+
+  factory :tweet do
+    content { "A tweet" }
   end
 end
+
+ 
