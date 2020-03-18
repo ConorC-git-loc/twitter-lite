@@ -1,6 +1,6 @@
 
 <% if user_signed_in? %>
-<h3><%= current_user.email %></h3>
+<h3><%= current_user.username %></h3>
 <% end %>
 
 Create: <%= link_to "New Tweet", new_tweet_path(@tweets) %>
@@ -12,7 +12,19 @@ Create: <%= link_to "New Tweet", new_tweet_path(@tweets) %>
 <p><%= tweet.content %></p>
 — — — — — — — — — — — — — — — — — — — — — — — — — — — -
 <br>
+<%= link_to 'Show Tweet', tweet %>
+<%= link_to "Follow", follow_user_path(:id => tweet.user.id), :method => :post, :remote => 'true' %>
+<br>
 <br>
 <% end %>
 </ul>
 
+<% if @current_user == @user %>
+   <h5><%= "#{current_user.username}'s page" %></h5>
+<% elsif @current_user.followees.include?(@user) %>
+   <h5><%= button_to "UnFollow #{@user.username}",     
+       unfollow_user_path, method: "POST" %></h5>
+<% else %>
+   <h5><%= button_to "Follow #{@user.username}", follow_user_path, 
+       method: "POST"  %></h5>
+<% end %>

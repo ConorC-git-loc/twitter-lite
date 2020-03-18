@@ -9,9 +9,29 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
 
   <body>
+
+    
+
+    <% if flash[:notice] %>
+      <p><%= notice %></p>   
+    <% end %>
+    <% if flash[:alert] %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+   
+    <nav class="navbar is-info">
+      <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-5">Twitter</h1>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+      <% end %>
+    </div>
+    </nav>
+
+
+
     <%= yield %>
   </body>
 </html>

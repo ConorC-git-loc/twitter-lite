@@ -1,12 +1,17 @@
-<h1>Home#index</h1>
-<p>Fake Twitter</p>
+<div class = "col-lg-1 col-offset-6 centered">
+Welcome back <%= current_user.username %>
+
+
+<h2><p>Fake Twitter</p></h2>
 
 <% @users.each do |user| %>
-  <p><%= user.email %></p>
-  <%= link_to user.email, user %>
+  <p><%= user.email %></p><br>
+  <%= link_to user.email, user %><br>
    <%= user.tweets.each do |tweet| %>
-  <p><%= tweet.content %>
+  <p><%= tweet.content %><br><br>
   	<%= Tweet.first.created_at %>
   </p>
+  <%= link_to "Follow", user.follower_id %>
  <% end %>
 <% end %>
+</div>

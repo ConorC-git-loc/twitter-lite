@@ -22,7 +22,11 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap', '~> 4.4.1'
 
+gem 'jquery-rails'
+
+gem 'simple_form'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

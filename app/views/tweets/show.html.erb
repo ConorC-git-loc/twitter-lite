@@ -1,3 +1,7 @@
 <h1><%= @tweet.id %></h1>
 
 <p><%= @tweet.content %></p>
+
+<%= link_to 'Remove Tweet', :method => :delete %>
+
+<%= link_to 'Destroy', @tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
