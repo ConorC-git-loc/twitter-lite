@@ -1,7 +1,14 @@
-<h1><%= @tweet.id %></h1>
 
-<p><%= @tweet.content %></p>
+<div class="container">
+  <h1><%= @tweet.id %></h1>
 
-<%= link_to 'Remove Tweet', :method => :delete %>
+  <p><%= @tweet.content %></p>
+<br>
+<br>
+  <b>Tweeted on </b><%= @tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
 
-<%= link_to 'Destroy', @tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
+<br>
+<br>
+  <%= link_to 'Remove Tweet', :method => :delete, data: { confirm: 'Are you sure?'} %>
+
+</div>

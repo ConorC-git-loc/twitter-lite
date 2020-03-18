@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
   get '/users/:id', :to => 'home#show', :as => :user
   get '/users/:id', :to => 'tweets#index', :as => :thisuser
-  post '/users/:id/follow', to: "tweets#follow", as: "follow_user"
-  post '/users/:id/unfollow', to: "tweets#unfollow", as: "unfollow_user"
+
+
+
 
 end
