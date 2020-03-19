@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_search
 
 
 
@@ -10,12 +11,15 @@ class TweetsController < ApplicationController
 
   def index
   	@tweets = Tweet.all
+    @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
   end
 
-  
   def current_user?
     super || User.new
   end
+
 
   def show
     @tweet = Tweet.find(params[:id])
@@ -33,13 +37,8 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = Tweet.find(params[:id])
     @tweet.destroy
-    respond_to do |format|
-      if @tweet.destroy
-        format.html { render notice: 'Tweet was successfully removed.' }
-        format.json { render :index, status: :destroyed, location: @tweet }
-      end
-    end
-end
+    redirect_to root_path
+  end
 
 
 private 

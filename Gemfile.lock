@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: aee2d97dd4c66d344030f4d41b207015f8c68fd3
+  specs:
+    polyamorous (2.3.2)
+      activerecord (>= 5.2.1)
+    ransack (2.3.2)
+      activerecord (>= 5.2.1)
+      activesupport (>= 5.2.1)
+      i18n
+      polyamorous (= 2.3.2)
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: 7966190d46fd8165b58f3be1bffe41d37ccaea7c
   branch: master
@@ -64,7 +76,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
-    acts_as_votable (0.12.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (9.7.4)
@@ -260,7 +271,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_votable
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.4.1)
   byebug
@@ -273,6 +283,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
+  ransack!
   rspec-rails (~> 4.0.0.rc1)
   sass-rails (>= 6)
   selenium-webdriver

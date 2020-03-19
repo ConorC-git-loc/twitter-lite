@@ -2,7 +2,7 @@
 <div class="container">
   <% if user_signed_in? %>
     <h3><%= current_user.username %></h3>
-    <p>You have <%= current_user.followers.count %> Followers</p>
+    <p>You have <b><%= current_user.followers.count %></b> Followers</p>
   <% end %>
 <br>
 <br>
@@ -16,14 +16,14 @@
   <p><%= tweet.content %></p>
 <br>
 <br>
-  <b>Tweeted at</b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
-
+  <b>Tweeted at </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+<br>
 
 
 
 — — — — — — — — — — — — — — — — — — — — — — — — — — — -
 <br>
-<%= link_to 'Show Tweet', tweet %>
+
 
 <% if current_user.id != tweet.user.id %> 
   <% if current_user.following?(tweet.user) %>
@@ -34,12 +34,22 @@
 <br>
 <br>
 <% end %>
+<%= link_to 'Show Tweet', tweet %>
+<br>
+<br>
 <% end %>
 </ul>
 
 </div>
 
 <%= render partial: 'followers' %>
+
+
+#<%= search_form_for @q, url: thisuser_path(@users) do |f| %>
+  #<%= f.label :username %>
+  #<%= f.search_field :username %>
+  #<%= f.submit %>
+#<% end %>
 
 
 
