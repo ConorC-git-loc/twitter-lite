@@ -2,7 +2,8 @@
 <div class="container">
   <% if user_signed_in? %>
     <h3><%= current_user.username %></h3>
-    <p>You have <b><%= current_user.followers.count %></b> Followers</p>
+    <p>You have <b><%= current_user.followers.count %></b> followers</p>
+    <p>You follow <b><%= current_user.following.count %></b> other members</b></p> 
   <% end %>
 <br>
 <br>
@@ -13,10 +14,13 @@
 <ul>
   <% @tweets.reverse.each do |tweet| %>
     <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
+    @<%= tweet.user.handle %>
+    <br>
+    <br>
   <p><%= tweet.content %></p>
 <br>
 <br>
-  <b>Tweeted at </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+  <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
 <br>
 
 
@@ -44,12 +48,14 @@
 
 <%= render partial: 'followers' %>
 
+<%= render partial: 'following' %>
 
-#<%= search_form_for @q, url: thisuser_path(@users) do |f| %>
-  #<%= f.label :username %>
-  #<%= f.search_field :username %>
-  #<%= f.submit %>
-#<% end %>
+#in progress
+<%= search_form_for @q, url: thisuser_path(@users) do |f| %>
+  <%= f.label :username %>
+  <%= f.search_field :username %>
+  <%= f.submit %>
+<% end %>
 
 
 

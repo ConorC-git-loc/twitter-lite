@@ -9,6 +9,7 @@
 
 <br>
 <br>
+<% if current_user.id == @tweet.user.id %>
   <%= button_to 'Remove Tweet', tweet_path(@tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-
+<% end %>
 </div>

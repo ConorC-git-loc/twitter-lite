@@ -9,11 +9,12 @@ class ApplicationController < ActionController::Base
 protected
 
   def set_search
-   @q=User .search(params[:q])
+   @q=User.search(params[:q])
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :handle])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :handle]) 
   end
 	
 end

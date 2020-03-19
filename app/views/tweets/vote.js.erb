@@ -1,6 +1,0 @@
-<% if current_user.liked? @tweet %>
-   $('.like-btn').addClass('like-btn');
-<% else %>
-   $('.like-btn').addClass('like-btn');
-<% end %>
-$('.likes-count').html("<%=@tweet.get_upvotes.size %>")
