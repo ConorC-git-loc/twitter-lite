@@ -9,6 +9,6 @@
 
 <br>
 <br>
-  <%= link_to 'Remove Tweet', :method => :delete, data: { confirm: 'Are you sure?'} %>
+  <%= button_to 'Remove Tweet', tweet_path(@tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
 
 </div>
