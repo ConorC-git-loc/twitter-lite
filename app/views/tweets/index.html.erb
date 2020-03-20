@@ -14,7 +14,8 @@
 <ul>
   <% @tweets.reverse.each do |tweet| %>
     <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
-    @<%= tweet.user.handle %>
+    <br>
+    <strong>@<%= tweet.user.handle %></strong>
     <br>
     <br>
   <p><%= tweet.content %></p>
