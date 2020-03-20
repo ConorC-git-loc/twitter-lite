@@ -59,7 +59,6 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  text-align: left;
   background-color: #fff;
 }
 
@@ -506,6 +505,7 @@ mark,
   font-size: 90%;
   color: #6c757d;
 }
+
 
 code {
   font-size: 87.5%;

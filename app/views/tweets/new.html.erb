@@ -1,11 +1,13 @@
 
+<div class= "col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+  <h1>Create Tweet</h1>
 
-<h1>Create Tweet</h1>
 
-
-<%= simple_form_for @tweet do |f| %>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= simple_form_for @tweet do |f| %>
+      <%= f.label :content %>
+      <%= f.text_area :content %>
  <br><br>
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
+
+</div>
