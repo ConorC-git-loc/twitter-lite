@@ -1,24 +1,42 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+User can register
 
-* Ruby version
+User can log in
 
-* System dependencies
+User can edit or close their account
 
-* Configuration
+User can create Tweet
 
-* Database creation
+User can remove only their own Tweets
 
-* Database initialization
+User can view individual Tweets from other users
 
-* How to run the test suite
+User can view own Tweets
 
-* Services (job queues, cache servers, search engines, etc.)
+User can view another user's individual Tweets
 
-* Deployment instructions
+User can follow another user
+
+User can see how many followers they have, how many are following
+
+
+
+################################To Do##################################
+
+Set up seeding for database (today)
+Implement search function for users 
+Fix unfollow action
+Transform styling
+
+
+
+
+* Ruby 2.7.0
+
+* SQlite
+
+* Rspec
+
 
 * ...
