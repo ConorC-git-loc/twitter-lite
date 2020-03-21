@@ -4,8 +4,9 @@
 
 
     <%= simple_form_for @tweet do |f| %>
-      <%= f.label :content %>
-      <%= f.text_area :content %>
+      <%= f.label :create_your_tweet %>
+      <br>
+      <%= f.text_area :content, :rows => 10, style: 'width:100%;' %>
  <br><br>
     <%= f.submit 'Create Tweet!', :class => "btn btn-primary" %>
   <% end %>
