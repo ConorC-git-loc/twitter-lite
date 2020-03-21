@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :tweets
 
 
-  resources :relationships, :only => [:create, :destroy]
+  resource :relationships, :only => [:create, :destroy]
 
  
   get '/users/:id', :to => 'home#show', :as => :user
