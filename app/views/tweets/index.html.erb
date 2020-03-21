@@ -7,6 +7,7 @@
     <b><%= current_user.tweets.count %></b> Tweets
     <br>
     <br>
+    <hr/>
     <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
     <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
   <% end %>

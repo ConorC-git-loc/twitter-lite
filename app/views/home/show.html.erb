@@ -3,6 +3,7 @@
    <p>@<%= @user.handle %></p>
    <br>
    <b><%= @user.tweets.count %></b> Tweets
+   <hr/>
       <% @user.tweets.reverse.each do |tweet| %>
   <br>
   <br>
