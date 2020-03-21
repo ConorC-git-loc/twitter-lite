@@ -16,6 +16,7 @@ class TweetsController < ApplicationController
     @users = @q.result(distinct: true)
   end
 
+
   def current_user?
     super || User.new
   end

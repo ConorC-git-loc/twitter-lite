@@ -1,7 +1,14 @@
-<b>Following</b>
-<br>
 
-<% current_user.following.pluck(:username).compact.each do |following_username| %>
-  <%= following_username %>
-  <br />
-<% end %>
+<div class="container">
+  <br>
+  <br>
+  <b>Following</b>
+  <br>
+  <br>
+    <% current_user.following.pluck(:username).compact.each do |following_username| %>
+      <%= following_username %>
+    <br />
+    <% end %>
+    <br>
+  <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+</div>
