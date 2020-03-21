@@ -1,3 +1,5 @@
-Following
+<b>Following</b>
 
-<%= current_user.following %>
+<ul>
+<%= current_user.following.collect { |following| following.username } %>
+</ul>
