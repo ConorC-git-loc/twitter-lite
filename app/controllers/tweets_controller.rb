@@ -42,9 +42,17 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet = Tweet.find(params[:id])
-    @tweet.destroy
-    redirect_to root_path
+    respond_to do |format|
+      if @tweet.destroy
+        format.html { redirect_to tweets_path, alert: 'Tweet Deleted' }
+        format.json { render :index, status: :created, location: @tweet }
+      else
+        format.html { render :new }
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
+    end
   end
+ 
 
 
 private 
