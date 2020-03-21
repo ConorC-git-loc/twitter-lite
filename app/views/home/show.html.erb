@@ -1,19 +1,20 @@
-<h2><b><%= @user.username %>'s Profile</b></h2>
-<br>
-<br>
-
-<p><%= @user.email %></p>
-<% @user.tweets.reverse.each do |tweet| %>
+<div class="container">
+  <p><h2><b><%= @user.username %>'s Profile</b></h2></p>
+   <p>@<%= @user.handle %></p>
+   <br>
+   <b><%= @user.tweets.count %></b> Tweets
+      <% @user.tweets.reverse.each do |tweet| %>
   <br>
   <br>
-  <p><%= tweet.content %></p>
+      <p><%= tweet.content %></p>
   <br>
   <br>
   <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
   <br>
   <br>
-  <% if current_user.id == tweet.user.id %>
-  <%= button_to 'Remove Tweet', tweet_path(tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+      <% if current_user.id == tweet.user.id %>
+      <%= button_to 'Remove Tweet', tweet_path(tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
   <% end %>
-  -------------------------------------------------------------
+  <hr/>
 <% end %>
+</div>

@@ -1,9 +1,14 @@
 
 <div class="container">
   <% if user_signed_in? %>
-    <h3><%= current_user.username %></h3>
-    <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "Followers", 'tweets/followers' %></u></p>
-    <p>You are <u><%= link_to "Following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
+    <p><h3><%= current_user.username %></h3>
+    @<%= current_user.handle %></p>
+    <br>
+    <b><%= current_user.tweets.count %></b> Tweets
+    <br>
+    <br>
+    <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
+    <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
   <% end %>
 <br>
 <br>
@@ -25,8 +30,8 @@
 <br>
 
 
+<hr/>
 
-— — — — — — — — — — — — — — — — — — — — — — — — — — — -
 <br>
 
 
@@ -47,11 +52,6 @@
 
 </div>
 
-<%= render partial: 'follower' %>
-
-<br>
-
-<%= render partial: 'following' %>
 <br>
 
 #in progress
