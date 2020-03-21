@@ -1,6 +1,13 @@
 <div class="container">
   <p><h2><b><%= @user.username %>'s Profile</b></h2></p>
+  <% if current_user.following?(@user) %>
+  <div class="btn btn-success">Following @<%= @user.handle %></div>
+  <% end %>
+  <br>
+  <br>
+  <% unless current_user.following?(@user) %>
    <p>@<%= @user.handle %></p>
+  <% end %>
 
   <% if current_user.id != @user.id %>
   <% if current_user.following? (@user) %>
