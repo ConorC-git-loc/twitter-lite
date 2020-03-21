@@ -14,8 +14,6 @@ User can view individual Tweets from other users
 
 User can view own Tweets
 
-User can view another user's individual Tweets
-
 User can follow another user
 
 User can see how many followers they have, how many are following
