@@ -31,10 +31,10 @@
 <br>
 
 
-<hr/>
-
 <br>
-
+<%= link_to 'Show Tweet', tweet %>
+<br>
+<br>
 
 <% if current_user.id != tweet.user.id %> 
   <% if current_user.following?(tweet.user) %>
@@ -43,11 +43,8 @@
     <%= button_to "Follow", relationships_path(user_id: tweet.user), :class => "btn btn-primary" %>
   <% end %>
 <br>
-<br>
 <% end %>
-<%= link_to 'Show Tweet', tweet %>
-<br>
-<br>
+<hr/>
 <% end %>
 </ul>
 

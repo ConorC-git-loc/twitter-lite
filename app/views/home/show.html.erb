@@ -1,13 +1,22 @@
 <div class="container">
   <p><h2><b><%= @user.username %>'s Profile</b></h2></p>
    <p>@<%= @user.handle %></p>
-   <br>
-   <b><%= @user.tweets.count %></b> Tweets
-   <hr/>
-      <% @user.tweets.reverse.each do |tweet| %>
+
+  <% if current_user.id != @user.id %>
+  <% if current_user.following? (@user) %>
+    <%= button_to "Unfollow", relationships_path(user_id: @user), method: :delete, :class => "btn btn-primary" %>
+  <% else %>
+    <%= button_to "Follow", relationships_path(user_id: @user), :class => "btn btn-primary" %>
+  <% end %>
+  <% end %>
   <br>
   <br>
-      <p><%= tweet.content %></p>
+  <b><%= @user.tweets.count %></b> Tweets
+  <hr/>
+     <% @user.tweets.reverse.each do |tweet| %>
+  <br>
+  <br>
+  <p><%= tweet.content %></p>
   <br>
   <br>
   <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
