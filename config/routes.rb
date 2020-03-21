@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'tweets/new'
+  get 'tweets/followers'
+  get 'tweets/following'
   get 'home/index'
   get 'home/show'
   devise_for :users
@@ -12,7 +14,6 @@ Rails.application.routes.draw do
   resources :relationships, :only => [:create, :destroy]
 
  
-
   get '/users/:id', :to => 'home#show', :as => :user
   get '/users/:id', :to => 'tweets#index', :as => :thisuser
 

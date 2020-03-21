@@ -2,8 +2,8 @@
 <div class="container">
   <% if user_signed_in? %>
     <h3><%= current_user.username %></h3>
-    <p>You have <b><%= current_user.followers.count %></b> followers</p>
-    <p>You follow <b><%= current_user.following.count %></b> other members</b></p> 
+    <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "Followers", 'tweets/followers' %></u></p>
+    <p>You are <u><%= link_to "Following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
   <% end %>
 <br>
 <br>
