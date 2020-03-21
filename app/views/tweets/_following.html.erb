@@ -1,5 +1,7 @@
 <b>Following</b>
+<br>
 
-<ul>
-  <%= current_user.following.collect { |following| following.username } %>
-</ul>
+<% current_user.following.pluck(:username).compact.each do |following_username| %>
+  <%= following_username %>
+  <br />
+<% end %>

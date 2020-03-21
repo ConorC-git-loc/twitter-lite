@@ -1,9 +1,11 @@
 <b>Your followers</b>
+<bR>
 
 
- <ul>
-   <%= current_user.followers.collect { |follower| follower.username } %>
- </ul>
+ <% current_user.followers.pluck(:username).compact.each do |follower_username| %>
+  <%= follower_username %>
+  <br />
+<% end %>
 
 
 

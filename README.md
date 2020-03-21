@@ -18,6 +18,8 @@ User can follow another user
 
 User can see how many followers they have, how many are following
 
+User can see who they are following and who is following them
+
 
 
 ################################To Do##################################
