@@ -16,6 +16,8 @@ User can view own Tweets
 
 User can follow another user
 
+User can unfollow another user
+
 User can see how many followers they have, how many are following
 
 User can see who they are following and who is following them
@@ -26,7 +28,6 @@ User can see who they are following and who is following them
 
 Set up seeding for database (today)
 Implement search function for users 
-Fix unfollow action
 Transform styling
 
 
