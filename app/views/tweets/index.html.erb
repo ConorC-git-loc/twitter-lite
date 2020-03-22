@@ -1,13 +1,15 @@
 
-<div class="container">
-  <% if user_signed_in? %>
-    <p><h3><%= current_user.username %></h3>
-    @<%= current_user.handle %></p>
-    <br>
-    <b><%= current_user.tweets.count %></b> Tweets
-    <br>
-    <br>
-    <hr/>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <% if user_signed_in? %>
+      <p><h3><%= current_user.username %></h3>
+            @<%= current_user.handle %></p>
+      <br>
+          <b><%= current_user.tweets.count %></b> Tweets
+      <br>
+      <br>
+      <hr/>
     <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
     <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
   <% end %>
@@ -50,14 +52,17 @@
 
 </div>
 
+<div class="col-lg-6">
+<%= render partial: 'follower' %>
+<%= render partial: 'following' %>  
+</div>
+
+</div>
+</div>
+
 <br>
 
-#in progress
-<%= search_form_for @q, url: thisuser_path(@users) do |f| %>
-  <%= f.label :username %>
-  <%= f.search_field :username %>
-  <%= f.submit %>
-<% end %>
+
 
 
 

@@ -1,0 +1,18 @@
+
+<br>
+<%= search_form_for @q, url: users_search_index_path do |f| %>
+  <%= f.label :username %>
+  <%= f.search_field :username %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<table id="users">
+	<tr>
+		<th>User Name</th>
+	</tr>
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= user.username %>
+	</tr>
+	<% end %>
+</table>

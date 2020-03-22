@@ -1,1 +1,13 @@
-<%= render partial: 'follower' %>
+<div class="container">
+  <br>
+  <b>Your followers</b>
+  <br>
+  <br>
+
+   <% current_user.followers.pluck(:username).compact.each do |follower_username| %>
+     <%= follower_username %>
+     <br />
+   <% end %>
+   <br>
+  <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+</div>
