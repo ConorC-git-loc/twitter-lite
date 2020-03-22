@@ -21,8 +21,8 @@
       <br>
       <b><h2>Latest tweets from users you are following</h2></b>
       <br>
-      <% current_user.following.each do |following, following_username, following_handle| %>
-        <% following.tweets.each do |tweet| %>
+      <% current_user.following.each do |following| %>
+        <% following.tweets.reverse.each do |tweet| %>
           <%= tweet.user.username %>
           <b>@<%= tweet.user.handle %></b>
           <br>
