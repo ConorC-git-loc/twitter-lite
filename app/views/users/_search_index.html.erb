@@ -25,6 +25,7 @@
 		<th style="padding:0 15px 0 15px;">Email</th>
 		<th style="padding:0 15px 0 15px"">@</th>
 		<th colspan="3"></th>
+		<th colspan="3"></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -40,6 +41,7 @@
                <%= button_to "Follow", relationships_path(user_id: user.id), :class => "btn btn-primary btn-sm" %>
             <% end %>
            <% end %></td>
+        <td stlye="padding:0 60px 0 60px;" col width="130" align="right"><b><%= user.followers.count %> Followers</b></td>
 	</tr>
 	<% end %>
 	</tbody>

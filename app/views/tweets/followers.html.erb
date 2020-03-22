@@ -1,11 +1,12 @@
 <div class="container">
   <br>
+  <br>
   <b>Your followers</b>
   <br>
   <br>
-
-   <% current_user.followers.pluck(:username).compact.each do |follower_username| %>
+   <% current_user.followers.pluck(:username, :handle).compact.each do |follower_username, follower_handle| %>
      <%= follower_username %>
+      &nbsp;&nbsp;&nbsp;<b>@<%= follower_handle %></b>
      <br />
    <% end %>
    <br>

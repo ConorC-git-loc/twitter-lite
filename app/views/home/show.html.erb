@@ -1,37 +1,62 @@
-<div class="container">
-  <p><h2><b><%= @user.username %>'s Profile</b></h2></p>
-  <% if current_user.following?(@user) %>
-  <div class="btn btn-success">Following @<%= @user.handle %></div>
-  <% end %>
-  <br>
-  <br>
-  <% unless current_user.following?(@user) %>
-   <p>@<%= @user.handle %></p>
-  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <p><h2><b><%= @user.username %>'s Profile</b></h2></p>
+      <% if current_user.following?(@user) %>
+      <div class="btn btn-success">Following @<%= @user.handle %></div>
+      <% end %>
+      <br>
+      <br>
+      <% unless current_user.following?(@user) %>
+        <p>@<%= @user.handle %></p>
+      <% end %>
 
-  <% if current_user.id != @user.id %>
-  <% if current_user.following? (@user) %>
-    <%= button_to "Unfollow", relationships_path(user_id: @user), method: :delete, :class => "btn btn-primary" %>
-  <% else %>
-    <%= button_to "Follow", relationships_path(user_id: @user), :class => "btn btn-primary" %>
-  <% end %>
-  <% end %>
-  <br>
-  <br>
-  <b><%= @user.tweets.count %></b> Tweets
-  <hr/>
+      <% if current_user.id != @user.id %>
+        <% if current_user.following? (@user) %>
+          <%= button_to "Unfollow", relationships_path(user_id: @user), method: :delete, :class => "btn btn-primary" %>
+      <% else %>
+        <%= button_to "Follow", relationships_path(user_id: @user), :class => "btn btn-primary" %>
+      <% end %>
+    <% end %>
+     <br>
+     <br>
+     <b><%= @user.tweets.count %></b> Tweets &nbsp;&nbsp;&nbsp; <b><%= @user.followers.count %></b> Followers
+     <hr/>
      <% @user.tweets.reverse.each do |tweet| %>
-  <br>
-  <br>
-  <p><%= tweet.content %></p>
-  <br>
-  <br>
-  <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
-  <br>
-  <br>
-      <% if current_user.id == tweet.user.id %>
-      <%= button_to 'Remove Tweet', tweet_path(tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-  <% end %>
-  <hr/>
-<% end %>
+     <br>
+     <br>
+     <p><%= tweet.content %></p>
+     <br>
+     <br>
+     <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+     <br>
+     <br>
+     <% if current_user.id == tweet.user.id %>
+       <%= button_to 'Remove Tweet', tweet_path(tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+     <% end %>
+     <hr/>
+     <% end %>
+    </div>
+    <div class="col-lg-3">
+      <p><h2><b>Followers</b></h2></p>
+      <br />
+      <% @user.followers.pluck(:username, :handle).compact.each do |follower_username, follower_handle| %>
+        <%= follower_username %>
+        <b>&nbsp;&nbsp;&nbsp;@<%= follower_handle %></b>
+        <br />
+      <% end %>
+      <hr />
+    </div>
+    <div class="col-lg-3">
+      <p><h2><b>Following</b></h2></p>
+      <br />
+      <% @user.following.pluck(:username, :handle).compact.each do |following_username, following_handle| %>
+        <%= following_username %>
+        <b>&nbsp;&nbsp;&nbsp;@<%= following_handle %></b>
+        <br />
+      <% end %>
+      <hr />
+    </div>
+  </div>
 </div>
+

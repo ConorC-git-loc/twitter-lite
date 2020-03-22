@@ -18,7 +18,6 @@
       <%= button_to "Create Tweet", new_tweet_path(@tweet), method: :get, class: "btn btn-primary" %>
       <br>
       <br>
-
       <ul>
         <% @tweets.reverse.each do |tweet| %>
         <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
@@ -46,7 +45,7 @@
             <br>
            <% end %>
            <hr/>
-           <% end %>
+          <% end %>
     </ul>
 
     </div>
