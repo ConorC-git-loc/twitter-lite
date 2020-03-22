@@ -24,6 +24,16 @@ User can see how many followers they have, how many are following
 
 User can see who they are following and who is following them
 
+Added seeding for users - "rake db:seed" from command line
+
+Example users...
+
+john@gmail.com, password: "password"
+tom@gmail.com, password: "password"
+etc..
+
+Check seed file
+
 
 
 ################################To Do##################################
