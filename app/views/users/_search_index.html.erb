@@ -1,10 +1,12 @@
+
 <div class="container" %>
+  <br />
   <strong>Search for users</strong>
   <br>
   <%= search_form_for @q, url: root_path do |f| %>
     <%= f.search_field :username_cont, placeholder: 'Name' %>
     <%= f.search_field :email_cont, placeholder: 'Email' %>
-    <%= f.submit "Search" %>
+    <%= f.submit "Search", class: "btn btn-primary" %>
   <% end %>
   <br>
 

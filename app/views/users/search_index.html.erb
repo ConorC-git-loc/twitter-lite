@@ -1,22 +1,30 @@
 
-<br>
-<%= search_form_for @q, url: users_search_index_path do |f| %>
-  <%= f.label :username %>
-  <%= f.search_field :username_cont %>
-  <%= f.label :email %>
-  <%= f.search_field :email %>
-  <%= f.submit "Search" %>
-<% end %>
+<div class="container" %>
+  <br />
+  <strong>Search for users</strong>
+  <br>
+  <%= search_form_for @q, url: root_path do |f| %>
+    <%= f.search_field :username_cont, placeholder: 'Name' %>
+    <%= f.search_field :email_cont, placeholder: 'Email' %>
+    <%= f.submit "Search", class: "btn btn-primary" %>
+  <% end %>
+  <br>
 
-<table id="users">
-	<tr>
-		<th>User Name</th>
-		<th>Email</th>
+
+  <table id="users" class="ml-2">
+  <thead>
+	<tr class="ml-2">
+		<th style="padding:0 15px 0 15px;">User Name</th>
+		<th style="padding:0 15px 0 15px;">Email</th>
 	</tr>
+	</thead>
+	<tbody>
 	<% @users.each do |user| %>
-	<tr>
-		<td><%= user.username %></td>
-		<td><%= user.email %>
+	<tr class="ml-2">
+		<td style="padding:0 15px 0 15px;"><%= user.username %></td>
+		<td style="padding:0 15px 0 15px;"><%= user.email %></td>
 	</tr>
 	<% end %>
-</table>
+	</tbody>
+  </table>
+</div>
