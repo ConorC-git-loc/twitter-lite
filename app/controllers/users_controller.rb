@@ -8,6 +8,6 @@ class UsersController < ApplicationController
 
   def search_index
   	@q = User.ransack(params[:q])
-  	@users = @q.result
+  	@users = @q.result.paginate(page: params[:page])
   end
 end

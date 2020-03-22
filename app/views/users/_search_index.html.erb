@@ -4,8 +4,15 @@
   <strong>Search for users</strong>
   <br>
   <%= search_form_for @q, url: root_path do |f| %>
-    <%= f.search_field :username_cont, placeholder: 'Name' %>
-    <%= f.search_field :email_cont, placeholder: 'Email' %>
+  <div class="form-group">
+    <%= f.search_field :username_cont, placeholder: 'Name', class: "form-control" %>
+    </div>
+    <div class="form-group">
+    <%= f.search_field :email_cont, placeholder: 'Email', class: "form-control" %>
+    </div>
+    <div class="form-group">
+    <%= f.search_field :handle_cont, placeholder: '@', class: "form-control" %>
+    </div>
     <%= f.submit "Search", class: "btn btn-primary" %>
   <% end %>
   <br>
@@ -13,16 +20,18 @@
 
   <table id="users" class="ml-2">
   <thead>
-	<tr class="ml-2">
+	<tr>
 		<th style="padding:0 15px 0 15px;">User Name</th>
 		<th style="padding:0 15px 0 15px;">Email</th>
+		<th style="padding:0 15px 0 15px"">@</th>
 	</tr>
 	</thead>
 	<tbody>
 	<% @users.each do |user| %>
-	<tr class="ml-2">
+	<tr>
 		<td style="padding:0 15px 0 15px;"><%= user.username %></td>
 		<td style="padding:0 15px 0 15px;"><%= user.email %></td>
+		<td style="padding:0 15px 0 15px;"><%= user.handle %></td>
 	</tr>
 	<% end %>
 	</tbody>
