@@ -2,17 +2,21 @@
 <br>
 <%= search_form_for @q, url: users_search_index_path do |f| %>
   <%= f.label :username %>
-  <%= f.search_field :username %>
+  <%= f.search_field :username_cont %>
+  <%= f.label :email %>
+  <%= f.search_field :email %>
   <%= f.submit "Search" %>
 <% end %>
 
 <table id="users">
 	<tr>
 		<th>User Name</th>
+		<th>Email</th>
 	</tr>
 	<% @users.each do |user| %>
 	<tr>
-		<td><%= user.username %>
+		<td><%= user.username %></td>
+		<td><%= user.email %>
 	</tr>
 	<% end %>
 </table>

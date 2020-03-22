@@ -10,57 +10,58 @@
       <br>
       <br>
       <hr/>
-    <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
-    <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
-  <% end %>
-<br>
-<br>
-  <%= button_to "Create Tweet", new_tweet_path(@tweet), method: :get, class: "btn btn-primary" %>
-<br>
-<br>
+      <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
+      <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
+      <% end %>
+      <br>
+      <br>
+      <%= button_to "Create Tweet", new_tweet_path(@tweet), method: :get, class: "btn btn-primary" %>
+      <br>
+      <br>
 
-<ul>
-  <% @tweets.reverse.each do |tweet| %>
-    <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
-    <br>
-    <strong>@<%= tweet.user.handle %></strong>
-    <br>
-    <br>
-  <p><%= tweet.content %></p>
-<br>
-<br>
-  <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
-<br>
+      <ul>
+        <% @tweets.reverse.each do |tweet| %>
+        <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
+        <br>
+        <strong>@<%= tweet.user.handle %></strong>
+        <br>
+        <br>
+              <p><%= tweet.content %></p>
+        <br>
+        <br>
+        <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+        <br>
 
+        <br>
+           <%= link_to 'Show Tweet', tweet %>
+        <br>
+        <br>
 
-<br>
-<%= link_to 'Show Tweet', tweet %>
-<br>
-<br>
+           <% if current_user.id != tweet.user.id %> 
+             <% if current_user.following?(tweet.user) %>
+               <%= button_to "Unfollow", relationships_path(user_id: tweet.user), method: :delete, :class => "btn btn-primary" %>
+             <% else %>
+               <%= button_to "Follow", relationships_path(user_id: tweet.user), :class => "btn btn-primary" %>
+            <% end %>
+            <br>
+           <% end %>
+           <hr/>
+           <% end %>
+    </ul>
 
-<% if current_user.id != tweet.user.id %> 
-  <% if current_user.following?(tweet.user) %>
-    <%= button_to "Unfollow", relationships_path(user_id: tweet.user), method: :delete, :class => "btn btn-primary" %>
-  <% else %>
-    <%= button_to "Follow", relationships_path(user_id: tweet.user), :class => "btn btn-primary" %>
-  <% end %>
-<br>
-<% end %>
-<hr/>
-<% end %>
-</ul>
+    </div>
 
+      <div class="col-lg-6">
+        <%= render partial: '/users/search_index' %>
+        <hr />
+        <%= render partial: 'follower' %>
+        <hr />
+        <%= render partial: 'following' %>  
+     </div>
+  </div>
 </div>
 
-<div class="col-lg-6">
-<%= render partial: 'follower' %>
-<%= render partial: 'following' %>  
-</div>
 
-</div>
-</div>
-
-<br>
 
 
 
