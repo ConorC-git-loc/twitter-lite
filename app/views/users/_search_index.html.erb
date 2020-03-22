@@ -24,6 +24,7 @@
 		<th style="padding:0 15px 0 15px;">User Name</th>
 		<th style="padding:0 15px 0 15px;">Email</th>
 		<th style="padding:0 15px 0 15px"">@</th>
+		<th colspan="3"></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -32,6 +33,13 @@
 		<td style="padding:0 15px 0 15px;"><%= user.username %></td>
 		<td style="padding:0 15px 0 15px;"><%= user.email %></td>
 		<td style="padding:0 15px 0 15px;"><%= user.handle %></td>
+		<td><% if current_user.id != user.id %> 
+             <% if current_user.following?(user) %>
+               <%= button_to "Unfollow", relationships_path(user_id: user.id), method: :delete, :class => "btn btn-primary btn-sm" %>
+             <% else %>
+               <%= button_to "Follow", relationships_path(user_id: user.id), :class => "btn btn-primary btn-sm" %>
+            <% end %>
+           <% end %></td>
 	</tr>
 	<% end %>
 	</tbody>

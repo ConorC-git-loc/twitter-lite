@@ -5,8 +5,9 @@
   <b>Following</b>
   <br>
   <br>
-    <% current_user.following.pluck(:username).compact.each do |following_username| %>
+    <% current_user.following.pluck(:username, :handle).compact.each do |following_username, following_handle| %>
       <%= following_username %>
+      <b>&nbsp;&nbsp;&nbsp;@<%= following_handle %></b>
     <br />
     <% end %>
     <br>
