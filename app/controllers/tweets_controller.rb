@@ -17,6 +17,7 @@ class TweetsController < ApplicationController
   end
 
 
+
   def current_user?
     super || User.new
   end

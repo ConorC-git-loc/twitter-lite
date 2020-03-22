@@ -18,6 +18,8 @@ User can follow another user
 
 User can unfollow another user
 
+User can see tweets only from users that they follow (click on 'following' link on root page)
+
 User can search for other users by their name or email
 
 User can see how many followers they have, how many are following

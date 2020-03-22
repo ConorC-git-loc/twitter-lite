@@ -1,14 +1,39 @@
-<div class="container">
-  <br>
-  <br>
-  <b>Following</b>
-  <br>
-  <br>
-    <% current_user.following.pluck(:username, :handle).compact.each do |following_username, following_handle| %>
-      <%= following_username %>
-      &nbsp;&nbsp;&nbsp;<b>@<%= following_handle %></b>
-    <br />
-    <% end %>
-    <br>
-  <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <br>
+      <br>
+      <b>Following</b>
+      <br>
+      <br>
+      <% current_user.following.pluck(:username, :handle).compact.each do |following_username, following_handle| %>
+        <%= following_username %>
+        &nbsp;&nbsp;&nbsp;<b>@<%= following_handle %></b>
+        <br />
+      <% end %>
+      <br>
+      <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+      <br>
+      <br>
+    </div>
+    <div class="col-lg-6">
+      <br>
+      <br>
+      <b><h2>Latest tweets from users you are following</h2></b>
+      <br>
+      <% current_user.following.each do |following, following_username, following_handle| %>
+        <% following.tweets.each do |tweet| %>
+          <%= tweet.user.username %>
+          <b>@<%= tweet.user.handle %></b>
+          <br>
+          <%= tweet.content %>
+          <br>
+          <br>
+          <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+          <br />
+          <hr />
+        <% end %>
+      <% end %>
+     </div>
+   </div>
 </div>
