@@ -36,6 +36,7 @@ etc..
 
 Check seed file
 
+Production - deployed to Heroku
 
 
 ################################To Do##################################
