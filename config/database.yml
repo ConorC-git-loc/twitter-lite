@@ -20,7 +20,7 @@ development:
   encoding: unicode
   database: fake_twitter_development
   pool: 5
-  username: conorcurran
+  username: 
   password: 
   timeout: 5000
  
@@ -50,6 +50,6 @@ test:
   encoding: unicode
   database: fake_twitter_test
   pool: 5
-  username: conorcurran
+  username: 
   password: 
   timeout: 5000
