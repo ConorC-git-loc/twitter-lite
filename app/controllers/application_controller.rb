@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 protected
 
   def set_search
-   @q=User.ransack(params[:q])
+    @q=User.ransack(params[:q])
   end
 
   def configure_permitted_parameters

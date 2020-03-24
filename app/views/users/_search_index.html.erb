@@ -1,4 +1,4 @@
-<div class="container" %>
+<div class="containter" style="min-height:594px" %>
   <br />
   <strong>Search for users</strong>
   <br>
@@ -44,5 +44,6 @@
 	</tr>
 	<% end %>
 	</tbody>
+  <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, class: "fixed-bottom" %>
   </table>
 </div>

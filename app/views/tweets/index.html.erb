@@ -6,13 +6,35 @@
       <p><h3><%= current_user.username %></h3>
             @<%= current_user.handle %></p>
       <br>
+        <% if current_user.tweets.count == 1 %>
+          <b><%= current_user.tweets.count %></b> Tweet
+        <% else %>
           <b><%= current_user.tweets.count %></b> Tweets
+        <% end %>
       <br>
       <br>
       <hr/>
-      <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
-      <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p> 
+
+
+
+        <% if current_user.followers.count == 1 %>
+        <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "follower", 'tweets/followers' %></u></p>
+          <% else %>
+        <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
+        <% end %>
+
+        <% if current_user.following.count == 1 %>
+        <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other member
+        </b></p>
+        <% else %>
+        <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p>
+        <% end %>
+
+
       <% end %>
+
+
+
       <br>
       <br>
       <%= button_to "Create Tweet", new_tweet_path(@tweet), method: :get, class: "btn btn-primary" %>
@@ -32,7 +54,7 @@
         <br>
 
         <br>
-           <%= link_to 'Show Tweet', tweet %>
+           <%= link_to 'Show Tweet', tweet %> <%= button_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %> <p style="float:right"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %></p>
         <br>
         <br>
 

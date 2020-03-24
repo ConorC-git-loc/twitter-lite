@@ -13,9 +13,8 @@ class TweetsController < ApplicationController
   	@tweets = Tweet.all
     @users = User.all
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users = @q.result(distinct: true).paginate(page: params[:page], per_page: 5)
   end
-
 
 
   def current_user?

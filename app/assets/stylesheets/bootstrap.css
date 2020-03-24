@@ -556,6 +556,16 @@ pre code {
   margin-left: 0;
 }
 
+@media screen and (min-width: 1024px) {
+    myNewDivHeight{
+        height:250px;
+    }
+}
+
+.inline {
+  float: left;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
