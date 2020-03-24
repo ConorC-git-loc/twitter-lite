@@ -52,9 +52,20 @@
         <br>
         <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
         <br>
-
         <br>
-           <%= link_to 'Show Tweet', tweet %> <%= button_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %> <p style="float:right"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+           <%= link_to 'Show Tweet', tweet %>
+
+
+           <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
+             <% if pre_like %>
+               <%= button_to 'Unlike', tweet_like_path(tweet, pre_like), method: :delete, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+             <% else %>
+               <%= button_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+             <% end %> 
+
+             
+
+        <p style="float:right"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %></p>
         <br>
         <br>
 
