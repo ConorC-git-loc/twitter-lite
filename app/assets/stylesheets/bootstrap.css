@@ -62,6 +62,7 @@ body {
   background-color: #fff;
 }
 
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }
@@ -504,6 +505,11 @@ mark,
 .figure-caption {
   font-size: 90%;
   color: #6c757d;
+}
+
+.tweet_left_options {
+ float: right; 
+ padding: 10px;
 }
 
 

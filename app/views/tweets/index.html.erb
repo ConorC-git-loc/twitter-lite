@@ -26,7 +26,7 @@
         <% if current_user.following.count == 1 %>
         <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other member
         </b></p>
-        <% else %>
+          <% else %>
         <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p>
         <% end %>
 
@@ -53,25 +53,27 @@
         <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
         <br>
         <br>
-           <%= link_to 'Show Tweet', tweet %>
+        
+          <p class="tweet_left_options"><%= link_to 'Show Tweet', tweet, :style => "float:right" %></p>
+
 
 
            <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
              <% if pre_like %>
-               <%= button_to 'Unlike', tweet_like_path(tweet, pre_like), method: :delete, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+               <%= link_to 'Unlike', tweet_like_path(tweet, pre_like), method: :delete, :class => "btn btn-primary btn-sm", :style => "float:left" %>
              <% else %>
-               <%= button_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+               <%= link_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %>
              <% end %> 
 
              
 
-        <p style="float:right"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+        <p class="tweet_left_options"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %></p>
         <br>
         <br>
 
-           <% if current_user.id != tweet.user.id %> 
-             <% if current_user.following?(tweet.user) %>
-               <%= button_to "Unfollow", relationships_path(user_id: tweet.user), method: :delete, :class => "btn btn-primary" %>
+          <% if current_user.id != tweet.user.id %> 
+            <% if current_user.following?(tweet.user) %>
+              <%= button_to "Unfollow", relationships_path(user_id: tweet.user), method: :delete, :class => "btn btn-primary" %>
              <% else %>
                <%= button_to "Follow", relationships_path(user_id: tweet.user), :class => "btn btn-primary" %>
             <% end %>
@@ -79,9 +81,9 @@
            <% end %>
            <hr/>
           <% end %>
-    </ul>
+        </ul>
 
-    </div>
+      </div>
 
       <div class="col-lg-6">
         <%= render partial: '/users/search_index' %>
@@ -89,8 +91,8 @@
         <%= render partial: 'follower' %>
         <hr />
         <%= render partial: 'following' %>  
-     </div>
-  </div>
+      </div>
+    </div>
 </div>
 
 
