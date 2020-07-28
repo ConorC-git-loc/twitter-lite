@@ -2626,8 +2626,8 @@ fieldset:disabled a.btn {
 
 .btn-followers  {
   display: inline-block;
-  font-weight: 400;
-  color: blue;
+  font-weight: 600;
+  color: #007bff;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;

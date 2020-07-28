@@ -35,7 +35,7 @@
             <h1>Twitter-lite</h1>
             <% if user_signed_in? %>
               <h4><%= link_to "Manage Account", edit_user_registration_path, class: "h7" %></h4>
-              <%= button_to "Followers", tweets_following_path, :method => :get, class: "btn btn-followers" %>
+              <b><%= button_to "What's Happening", tweets_following_path, :method => :get, class: "btn btn-followers" %></b>
               <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "h7" %>
             <% else %>
               <%= link_to 'Login', new_user_session_path, class: "h7" %>
