@@ -1,4 +1,4 @@
-
+A Twitter Clone
 
 User can register
 
@@ -38,21 +38,18 @@ Check seed file
 
 Production - deployed to Heroku
 
+#############################################
 
-################################To Do##################################
+Status: July 29th, app development
 
-Set up seeding for database (today)
-Implement search function for users 
-Transform styling
-
+Next: enhance features, testing
 
 
 
 * Ruby 2.7.0
 
-* SQlite
-
+* PostgreSQL
 * Rspec
 
 
-* ...
+
