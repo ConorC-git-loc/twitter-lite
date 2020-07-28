@@ -1,41 +1,49 @@
 
+  <div class= "login-padding container_login">
+    <div class="col-lg-6">
 
+      <div class= "col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4"> 
+        <div class="container">
+        <div class="light-well">
+          <h2 class="page-header text-center">Welcome Back!</h2>
 
-    <div class= "col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
-      <div class="container">
-      <div class="light-well">
-        <h2 class="page-header text-center">Welcome Back!</h2>
+          <%= simple_form_for resource, as: resource_name, url: session_path(resource_name),
+                        html: { class: "form-horizontal center"} do |f| %>
 
-        <%= simple_form_for resource, as: resource_name, url: session_path(resource_name),
-                      html: { class: "form-horizontal center"} do |f| %>
-
-          <div class="form-group">
-            <%= f.email_field :email, autofocus: true, placeholder: "Email Address", class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
-          </div>
-
-          <% if devise_mapping.rememberable? -%>
             <div class="form-group">
-              <div class="col-sm-10">
-                <div class="checkbox">
-                  <label>
-                    <%= f.check_box :remember_me %> Remember me
-                  </label>
-                </div>
-              </div>
+              <%= f.email_field :email, autofocus: true, placeholder: "Email Address", class: "form-control" %>
             </div>
-          <% end -%>
 
-          <div class="actions">
-            <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block" %>
-          </div>
-        <% end %>
+            <div class="form-group">
+              <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+            </div>
+
+            <% if devise_mapping.rememberable? -%>
+              <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <%= f.check_box :remember_me %> Remember me
+                    </label>
+                  </div>
+              </div>
+            <% end -%>
+
+            <div class="actions">
+              <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block" %>
+            </div>
+          <% end %>
+        </div>
+        <br>
+        <br>
+        <div class="page-header">
+          <%= render "devise/shared/links" %>
+        </div>
       </div>
-      <br>
-      <br>
-      <%= render "devise/shared/links" %>
     </div>
+
+    <%= render partial: '/shared/tweets', collection: @tweets, as: :tweet %>
   </div>
+</div>
+
+     
+    

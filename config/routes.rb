@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'tweets/followers'
   get 'tweets/following'
   get 'users/search_index'
+  get 'tweets/_latest_tweets'
   get 'home/index'
   get 'home/show'
   devise_for :users

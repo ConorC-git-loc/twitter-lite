@@ -15,9 +15,9 @@
         <% if current_user.following? (@user) %>
           <%= button_to "Unfollow", relationships_path(user_id: @user), method: :delete, :class => "btn btn-primary" %>
       <% else %>
-        <%= button_to "Follow", relationships_path(user_id: @user), :class => "btn btn-primary" %>
+          <%= button_to "Follow", relationships_path(user_id: @user), :class => "btn btn-primary" %>
       <% end %>
-    <% end %>
+     <% end %>
      <br>
      <br>
      <b><%= @user.tweets.count %></b> Tweets &nbsp;&nbsp;&nbsp; <b><%= @user.followers.count %></b> Followers

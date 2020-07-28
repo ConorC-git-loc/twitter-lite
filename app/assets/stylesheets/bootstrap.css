@@ -159,7 +159,7 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
+  color: none;
   text-decoration: underline;
 }
 
@@ -508,7 +508,9 @@ mark,
 }
 
 .tweet_left_options {
- float: right; 
+ float: right;
+ font-weight: bold;
+ color: green; 
  padding: 10px;
 }
 
@@ -560,6 +562,20 @@ pre code {
   padding-left: 15px;
   margin-right: 0;
   margin-left: 0;
+}
+
+.container_login {
+  height: 100%;
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+.page-header {
+  color:white;
+}
+
+.login-padding {
+  padding: 70px;
 }
 
 @media screen and (min-width: 1024px) {
@@ -4383,8 +4399,25 @@ input[type="button"].btn-block {
   position: relative;
   display: -ms-flexbox;
   display: flex;
-  background-color: blue;
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
   color: white;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-log-out {
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  color: blue;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-align: center;

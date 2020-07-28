@@ -27,19 +27,29 @@
       </p>
    </div>
    <% end %>
-   
-    <nav class="navbar">
-      <%= link_to root_path, class: "navbar-item" do %>
-        <h1>Twitter</h1>
-        <% if user_signed_in? %>
-        <h4><%= link_to "Manage Account", edit_user_registration_path, class: "h7" %></h4>
-        <%= button_to "Followers", tweets_following_path, :method => :get, class: "btn btn-followers" %>
-        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "h7" %>
-       <% else %>
-        <%= link_to 'Login', new_user_session_path, class: "h7" %>
-        <% end %>
+
+      <% if (user_signed_in?) %>
+       
+        <nav class="navbar">
+          <%= link_to root_path, class: "navbar-item" do %>
+            <h1>Twitter</h1>
+            <% if user_signed_in? %>
+              <h4><%= link_to "Manage Account", edit_user_registration_path, class: "h7" %></h4>
+              <%= button_to "Followers", tweets_following_path, :method => :get, class: "btn btn-followers" %>
+              <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "h7" %>
+            <% else %>
+              <%= link_to 'Login', new_user_session_path, class: "h7" %>
+            <% end %>
+          <% end %>
+        </nav>
+
+        <% else %>
+
+        <nav class="navbar-log-out">
+            <h1>Twitter</h1>
+        </nav>
+
       <% end %>
-    </nav>
 
 
   
