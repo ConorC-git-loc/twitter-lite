@@ -565,8 +565,8 @@ pre code {
 }
 
 .container_login {
-  height: 100%;
   background: #007bff;
+  background-size: cover;
   background: linear-gradient(to right, #0062E6, #33AEFF);
 }
 
@@ -574,8 +574,20 @@ pre code {
   color:white;
 }
 
+.page-footer{
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+.signup-padding{
+  padding-bottom: 100px;
+  margin-bottom: 0px;
+}
+
 .login-padding {
-  padding: 70px;
+  padding-bottom: 220px;
+  margin-bottom: 0px;
+  margin-top: 0px
 }
 
 @media screen and (min-width: 1024px) {
