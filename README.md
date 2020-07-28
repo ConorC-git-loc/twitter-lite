@@ -42,7 +42,7 @@ Production - deployed to Heroku
 
 Status: July 29th, app development
 
-Next: enhance features, testing
+Next: enhance features, testing, styling (implement Highcharts library)
 
 
 
