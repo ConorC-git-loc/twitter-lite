@@ -479,6 +479,34 @@ mark,
   content: "\2014\00A0";
 }
 
+.scrollable {
+  height: 900px;
+  min-width: 100%;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.scrollbar-light-blue::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+background-color: #F5F5F5;
+border-radius: 10px; 
+}
+
+.scrollbar-light-blue::-webkit-scrollbar {
+width: 12px;
+background-color: #F5F5F5; 
+}
+
+.scrollbar-light-blue::-webkit-scrollbar-thumb {
+border-radius: 10px;
+-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+background-color: #82B1FF; 
+}
+
+.scrollbar-light-blue {
+  scrollbar-color: #82B1FF #F5F5F5;
+}
+
 .img-fluid {
   max-width: 100%;
   height: auto;

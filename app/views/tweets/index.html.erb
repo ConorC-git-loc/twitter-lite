@@ -40,6 +40,7 @@
       <%= button_to "Create Tweet", new_tweet_path(@tweet), method: :get, class: "btn btn-primary" %>
       <br>
       <br>
+      <div class="col-lg-6 scrollable scrollbar-light-blue">
       <ul>
         <% @tweets.reverse.each do |tweet| %>
         <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
@@ -82,7 +83,7 @@
            <hr/>
           <% end %>
         </ul>
-
+      </div>
       </div>
 
       <div class="col-lg-6">
