@@ -34,9 +34,10 @@ gem 'jquery-rails'
 
 gem 'simple_form'
 
-gem "chartkick"
+gem 'chartkick'
 
-gem "groupdate"
+gem 'groupdate'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

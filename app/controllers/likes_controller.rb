@@ -11,7 +11,7 @@ class LikesController < ApplicationController
     else
       @tweet.likes.create(user_id: current_user.id)
     end
-    redirect_to root_path
+    redirect_to tweets_path
   end
   
 
@@ -21,7 +21,7 @@ class LikesController < ApplicationController
     else
     @like.destroy
     end
-    redirect_to root_path
+    redirect_to tweets_path
   end
 
 
