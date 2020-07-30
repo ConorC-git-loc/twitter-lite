@@ -9,6 +9,7 @@
       <br>
       <% unless current_user.following?(@user) %>
         <p>@<%= @user.handle %></p>
+        <p class="text-muted">Joined <%= @user.created_at.strftime("%d %b %Y") %></p>
       <% end %>
 
       <% if current_user.id != @user.id %>

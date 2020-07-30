@@ -46,6 +46,7 @@
         <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
         <br>
         <strong>@<%= tweet.user.handle %></strong>
+        <p class="text-muted h6">Joined <%= tweet.user.created_at.strftime("%d %b %Y") %></p>
         <br>
         <br>
               <p><%= tweet.content %></p>
