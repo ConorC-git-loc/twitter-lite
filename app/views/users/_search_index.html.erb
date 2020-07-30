@@ -3,7 +3,7 @@
   <strong>Search for users</strong>
   <br>
   <br>
-  <%= search_form_for @q, url: root_path do |f| %>
+  <%= search_form_for @q, url: tweets_path do |f| %>
   <div class="form-group">
     <%= f.search_field :username_cont, placeholder: 'Name', class: "form-control" %>
     </div>
