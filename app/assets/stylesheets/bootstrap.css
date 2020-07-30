@@ -598,6 +598,14 @@ pre code {
   background: linear-gradient(to right, #0062E6, #33AEFF);
 }
 
+.container_tweets {
+  background: white;
+  padding: 30px;
+  border-bottom-left-radius: 5%;
+  border-top-left-radius: 5%;
+  margin-top: 30px;
+}
+
 .page-header {
   color:white;
 }
@@ -615,7 +623,7 @@ pre code {
 .login-padding {
   padding-bottom: 220px;
   margin-bottom: 0px;
-  margin-top: 0px
+  margin-top: 50px
 }
 
 @media screen and (min-width: 1024px) {
