@@ -3,6 +3,7 @@
       <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
         <br>
         <strong>@<%= tweet.user.handle %></strong>
+        <p class="text-muted">Joined <%= tweet.user.created_at.strftime("%d %b %Y") %></p>
         <br>
         <br>
         <p><%= tweet.content %></p>
@@ -12,5 +13,8 @@
         <br>
         <br>
         <p class="tweet_left_options"><%= link_to 'Show Tweet', tweet, :style => "float:right" %></p>
+        <br>
+        <br>
+        <hr/>
     <% end %>
 </div>
