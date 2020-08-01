@@ -1,6 +1,6 @@
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row vertical-divider">
     <div class="col-lg-6">
       <% if user_signed_in? %>
       <p><h3><%= current_user.username %></h3>
@@ -40,52 +40,8 @@
       <%= button_to "Create Tweet", new_tweet_path(@tweet), method: :get, class: "btn btn-primary" %>
       <br>
       <br>
-      <div class="col-lg-6 scrollable scrollbar-light-blue">
-      <ul>
-        <% @tweets.reverse.each do |tweet| %>
-        <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
-        <br>
-        <strong>@<%= tweet.user.handle %></strong>
-        <p class="text-muted h6">Joined <%= tweet.user.created_at.strftime("%d %b %Y") %></p>
-        <br>
-        <br>
-              <p><%= tweet.content %></p>
-        <br>
-        <br>
-        <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
-        <br>
-        <br>
-        
-          <p class="tweet_left_options"><%= link_to 'Show Tweet', tweet, :style => "float:right" %></p>
-
-
-
-           <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
-             <% if pre_like %>
-               <%= link_to 'Unlike', tweet_like_path(tweet, pre_like), method: :delete, :class => "btn btn-primary btn-sm", :style => "float:left" %>
-             <% else %>
-               <%= link_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %>
-             <% end %> 
-
-             
-
-        <p class="tweet_left_options"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %></p>
-        <br>
-        <br>
-
-          <% if current_user.id != tweet.user.id %> 
-            <% if current_user.following?(tweet.user) %>
-              <%= button_to "Unfollow", relationships_path(user_id: tweet.user), method: :delete, :class => "btn btn-primary" %>
-             <% else %>
-               <%= button_to "Follow", relationships_path(user_id: tweet.user), :class => "btn btn-primary" %>
-            <% end %>
-            <br>
-           <% end %>
-           <hr/>
-          <% end %>
-        </ul>
-      </div>
-      </div>
+      
+      <%= render partial: 'tweets_index' %>
 
       <div class="col-lg-6">
         <%= render partial: '/users/search_index' %>
@@ -97,9 +53,8 @@
         <%= render partial: 'following' %>
         <hr />
       </div>
+      <div class = "testjs"></div>
     </div>
 </div>
-
-
 
 

@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("chartkick")
 require("chart.js")
+require("jquery")
 
 //= require jquery3
 //= require popper
@@ -23,3 +24,22 @@ require("chart.js")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+
+
+
+// follow buttons, no page refresh
+
+$(document).on('ajax:success', '.follow-btn', function(e) {
+  let data = e.detail[0];
+  let method = this.dataset.method === 'post' ? 'delete' : 'post';
+  let txt = {
+    post: 'Follow',
+    delete: 'Unfollow'
+  }[method];
+  $(`.follow-btn[href="${this.getAttribute('href')}"]`).each(function() {
+    this.dataset.method = method;
+    $(this).text(`${txt}`);
+  });
+});
+

@@ -1,11 +1,15 @@
 
-<div class="container">
+<div class="container-fluid text-center">
+  <br>
+
+  <p><b>@<%= @tweet.user.handle %></b></p>
+        <p class="text-muted">Joined <%= @tweet.user.created_at.strftime("%d %b %Y") %></p>
   <h1><%= @tweet.id %></h1>
 
   <p><%= @tweet.content %></p>
   <br>
   <br>
-  <b>Tweeted on </b><%= @tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+  <b>Tweeted </b><%= time_ago_in_words(@tweet.created_at) %> ago
 
   <br>
   <br>
@@ -14,4 +18,7 @@
   <% end %>
   <br>
   <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+  <br>
+  <br>
 </div>
+

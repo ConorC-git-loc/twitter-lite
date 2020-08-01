@@ -5,13 +5,26 @@ class RelationshipsController < ApplicationController
 
   def create
   	current_user.follow(@user)
-  	redirect_back(fallback_location: root_path)
+  	respond_to do |format|
+      format.html
+      format.json do
+        render json: { count: @user.followers.count },
+               status: :created  
+      end
+    end
   end
 
   def destroy
   	current_user.unfollow(@user)
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: { count: @user.followers.count }, 
+               status: :ok
+      end
+    end
   end
+
 
   private
 

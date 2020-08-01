@@ -36,9 +36,9 @@
 		<td style="padding:0 15px 0 15px;"><%= user.handle %></td>
 		<td><% if current_user.id != user.id %> 
              <% if current_user.following?(user) %>
-               <%= button_to "Unfollow", relationships_path(user_id: user.id), method: :delete, :class => "btn btn-primary btn-sm" %>
+               <%= button_to "Unfollow", relationships_path(user_id: user.id), id: "follow", remote: true, method: :delete, :class => "btn btn-primary btn-sm" %>
              <% else %>
-               <%= button_to "Follow", relationships_path(user_id: user.id), :class => "btn btn-primary btn-sm" %>
+               <%= button_to "Follow", relationships_path(user_id: user.id), id: "follow", remote: true, :class => "btn btn-primary btn-sm" %>
             <% end %>
            <% end %></td>
         <td stlye="padding:0 60px 0 60px;" col width="130" align="right"><b><%= user.followers.count %> Followers</b></td>

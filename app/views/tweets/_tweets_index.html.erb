@@ -1,0 +1,47 @@
+<div class="col-lg-6 scrollable scrollbar-light-blue">
+  <ul>
+    <% @tweets.reverse.each do |tweet| %>
+    <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
+    <br>
+    <strong>@<%= tweet.user.handle %></strong>
+    <p class="text-muted h6">Joined <%= tweet.user.created_at.strftime("%d %b %Y") %></p>
+    <br>
+    <br>
+          <p><%= tweet.content %></p>
+    <br>
+    <br>
+    <b>Tweeted </b><%= time_ago_in_words(tweet.created_at) %> ago
+    <br>
+    <br>
+    
+      <p class="tweet_left_options"><%= link_to 'Show Tweet', tweet, :style => "float:right" %></p>
+
+
+
+       <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
+         <% if pre_like %>
+           <%= link_to 'Unlike', tweet_like_path(tweet, pre_like), method: :delete, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+         <% else %>
+           <%= link_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+         <% end %> 
+
+         
+
+    <p class="tweet_left_options"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+    <br>
+    <br>
+
+
+      <% if current_user.id != tweet.user.id %> 
+        <% if current_user.following?(tweet.user) %>
+          <%= link_to "Unfollow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn btn btn-primary" %>
+         <% else %>
+           <%= link_to "Follow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn btn btn-primary" %>
+        <% end %>
+        <br>
+       <% end %>
+       <hr/>
+      <% end %>
+    </ul>
+  </div>
+</div>

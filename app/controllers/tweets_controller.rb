@@ -12,6 +12,7 @@ class TweetsController < ApplicationController
 
   def index
   	@tweets = Tweet.all
+    @tweet = Tweet.new
     @users = User.all
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true).paginate(page: params[:page], per_page: 5)
@@ -33,9 +34,11 @@ class TweetsController < ApplicationController
       if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweeted!' }
         format.json { render :index, status: :created, location: @tweet }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
