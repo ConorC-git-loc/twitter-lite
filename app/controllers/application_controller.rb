@@ -15,8 +15,8 @@ protected
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :handle])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :handle]) 
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :handle, :about])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :handle, :about]) 
   end
 	
 end

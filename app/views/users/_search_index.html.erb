@@ -1,6 +1,6 @@
 <div class="container" style="min-height:594px" %>
   <br />
-  <strong>Search for users</strong>
+  <strong>Search the community</strong>
   <br>
   <br>
   <%= search_form_for @q, url: tweets_path do |f| %>
@@ -22,7 +22,7 @@
   <thead>
 	<tr>
 		<th style="padding:0 15px 0 15px;">Name</th>
-		<th style="padding:0 15px 0 15px;">Email</th>
+		<th style="padding:0 15px 0 15px;">About</th>
 		<th style="padding:0 15px 0 15px;">@</th>
 		<th colspan="3"></th>
 		<th colspan="3"></th>
@@ -32,17 +32,19 @@
 	<% @users.each do |user| %>
 	<tr>
 		<td style="padding:0 15px 0 15px;"><%= user.username %></td>
-		<td style="padding:0 15px 0 15px;"><%= user.email %></td>
+		<td style="padding:0 15px 0 15px;"><%= user.about %></td>
 		<td style="padding:0 15px 0 15px;"><%= user.handle %></td>
-		<td><% if current_user.id != user.id %> 
+    <td style="padding:0 15px 0 15px;"><%= link_to "Profile", user_path(user.id), class: "btn btn-outline-primary rounded-pill" %> </td>
+
+		<!--<td><% if current_user.id != user.id %> 
              <% if current_user.following?(user) %>
-               <%= button_to "Unfollow", relationships_path(user_id: user.id), id: "follow", remote: true, method: :delete, :class => "btn btn-primary btn-sm" %>
+               <%= button_to "Unfollow", relationships_path(user_id: user.id), :class => "follow-sm-btn btn btn-primary rounded-pill" %>
              <% else %>
-               <%= button_to "Follow", relationships_path(user_id: user.id), id: "follow", remote: true, :class => "btn btn-primary btn-sm" %>
+               <%= button_to "Follow", relationships_path(user_id: user.id), :class => "follow-sm-btn btn btn-primary rounded-pill" %>
             <% end %>
            <% end %></td>
         <td stlye="padding:0 60px 0 60px;" col width="130" align="right"><b><%= user.followers.count %> Followers</b></td>
-	</tr>
+	</tr>-->
 	<% end %>
 	</tbody>
   <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, class: "fixed-bottom" %>

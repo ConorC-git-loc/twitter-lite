@@ -3,13 +3,13 @@
   <h1>Create Tweet</h1>
 
 
-    <%= simple_form_for @tweet, remote: true do |f| %>
+    <%= simple_form_for @tweet do |f| %>
       <b><%= f.label :create_your_tweet %></b>
       <br>
       <%= f.text_area :content, :rows => 10, style: 'width:100%;' %>
    <br>
    <br>
-    <%= f.submit 'Create Tweet!', :class => "btn btn-primary" %>
+    <%= f.submit 'Tweet', :class => "btn btn-outline-primary rounded-pill" %>
   <% end %>
 
 </div>

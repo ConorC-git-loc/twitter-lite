@@ -11,7 +11,10 @@ class LikesController < ApplicationController
     else
       @tweet.likes.create(user_id: current_user.id)
     end
-    redirect_to tweets_path
+     respond_to do |format|
+      format.html
+      format.json { head :created }
+    end
   end
   
 
@@ -19,9 +22,12 @@ class LikesController < ApplicationController
     if !(already_liked?)
       flash[:notice] = "Cannot unlike"
     else
-    @like.destroy
+     @like.destroy
     end
-    redirect_to tweets_path
+     respond_to do |format|
+      format.html
+      format.json { head :no_content }
+    end
   end
 
 

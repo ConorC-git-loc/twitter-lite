@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :username, presence: true
   validates :handle, presence: true
+  validates :about, presence: true, length: { maximum: 255 }
 
   has_many :tweets
   has_many :likes, dependent: :destroy

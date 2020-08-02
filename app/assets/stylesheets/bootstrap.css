@@ -2978,6 +2978,8 @@ fieldset:disabled a.btn {
 .btn-outline-primary {
   color: #007bff;
   border-color: #007bff;
+  font-weight: bold;
+  width: 100px;
 }
 
 .btn-outline-primary:hover {
@@ -10341,6 +10343,7 @@ a.text-dark:hover, a.text-dark:focus {
   .table {
     border-collapse: collapse !important;
   }
+
   .table td,
   .table th {
     background-color: #fff !important;

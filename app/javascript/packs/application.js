@@ -37,9 +37,25 @@ $(document).on('ajax:success', '.follow-btn', function(e) {
     post: 'Follow',
     delete: 'Unfollow'
   }[method];
+  //loop
   $(`.follow-btn[href="${this.getAttribute('href')}"]`).each(function() {
     this.dataset.method = method;
     $(this).text(`${txt}`);
   });
 });
 
+
+// follow button home#show
+
+
+$(document).on('ajax:success', '.follow-btn-show', function(e){
+  let $el = $(this);
+  let method = this.dataset.method;
+  if (method === 'post') {
+    $el.text('Unfollow');
+    this.dataset.method = 'delete';
+  } else if (method === 'delete') {
+    $el.text('Follow');
+    this.dataset.method = 'post';
+  }
+});

@@ -14,9 +14,9 @@
 
       <% if current_user.id != @user.id %>
         <% if current_user.following? (@user) %>
-          <%= button_to "Unfollow", relationships_path(user_id: @user), method: :delete, :class => "btn btn-primary" %>
+          <%= link_to "Unfollow", relationships_path(user_id: @user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn-show btn btn-outline-primary rounded-pill" %>
       <% else %>
-          <%= button_to "Follow", relationships_path(user_id: @user), :class => "btn btn-primary" %>
+          <%= link_to "Follow", relationships_path(user_id: @user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn-show btn btn-outline-primary rounded-pill" %>
       <% end %>
      <% end %>
      <br>
@@ -29,7 +29,7 @@
      <p><%= tweet.content %></p>
      <br>
      <br>
-     <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+     <b>Tweeted </b><%= time_ago_in_words(tweet.created_at) %> ago
      <br>
      <br>
      <% if current_user.id == tweet.user.id %>

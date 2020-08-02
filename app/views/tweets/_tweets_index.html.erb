@@ -20,9 +20,9 @@
 
        <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
          <% if pre_like %>
-           <%= link_to 'Unlike', tweet_like_path(tweet, pre_like), method: :delete, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+           <%= link_to 'Unlike', tweet_like_path(tweet, pre_like), data: { remote: true, type: :json, method: :delete }, :class => "like-btn btn btn-primary btn-sm", :style => "float:left" %>
          <% else %>
-           <%= link_to 'Like', tweet_likes_path(tweet), method: :post, :class => "btn btn-primary btn-sm", :style => "float:left" %>
+           <%= link_to 'Like', tweet_likes_path(tweet), data: { remote: true, type: :json, method: :post }, :class => "like-btn btn btn-primary btn-sm", :style => "float:left" %>
          <% end %> 
 
          
@@ -34,9 +34,9 @@
 
       <% if current_user.id != tweet.user.id %> 
         <% if current_user.following?(tweet.user) %>
-          <%= link_to "Unfollow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn btn btn-primary" %>
+          <%= link_to "Unfollow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn btn btn-outline-primary rounded-pill" %>
          <% else %>
-           <%= link_to "Follow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn btn btn-primary" %>
+           <%= link_to "Follow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn btn btn-outline-primary rounded-pill" %>
         <% end %>
         <br>
        <% end %>
