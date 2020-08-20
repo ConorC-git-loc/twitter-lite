@@ -1,3 +1,3 @@
 <b>Your Daily Activity</b>
 <br><br>
-<%= area_chart current_user.tweets.group_by_day(:created_at).count %>
+<%= area_chart @tweets.group_by_day(:created_at).count %>

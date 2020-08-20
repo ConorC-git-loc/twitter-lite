@@ -2,7 +2,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-6">
-        <%= render 'devise/sessions/form' %>
+        <% unless user_signed_in? %>
+          <%= render 'devise/sessions/form' %>
+        <% end %>
       </div>
       <div class="col-lg-6">
       	<h1>Latest Tweets</h1>

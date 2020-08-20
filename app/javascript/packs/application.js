@@ -28,7 +28,7 @@ require("jquery")
 
 
 
-// follow buttons, no page refresh
+// follow button tweets#index
 
 $(document).on('ajax:success', '.follow-btn', function(e) {
   let data = e.detail[0];
@@ -42,13 +42,18 @@ $(document).on('ajax:success', '.follow-btn', function(e) {
     this.dataset.method = method;
     $(this).text(`${txt}`);
   });
+  $("#following_count").load(" #following_count > *")
 });
+
+
+
 
 
 // follow button home#show
 
 
 $(document).on('ajax:success', '.follow-btn-show', function(e){
+  let data = e.detail[0];
   let $el = $(this);
   let method = this.dataset.method;
   if (method === 'post') {
@@ -58,4 +63,7 @@ $(document).on('ajax:success', '.follow-btn-show', function(e){
     $el.text('Follow');
     this.dataset.method = 'post';
   }
+  $("#follower_count").load(" #follower_count > *")
 });
+
+

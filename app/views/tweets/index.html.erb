@@ -3,14 +3,17 @@
   <div class="row vertical-divider">
     <div class="col-lg-6">
       <% if user_signed_in? %>
-      <p><h3><%= current_user.username %></h3>
-            @<%= current_user.handle %></p>
       <br>
-        <% if current_user.tweets.count == 1 %>
-          <b><%= current_user.tweets.count %></b> Tweet
-        <% else %>
-          <b><%= current_user.tweets.count %></b> Tweets
-        <% end %>
+      <!-- helper, avatar on index page, see application_helper.rb -->
+      <p class="inline"><%= index_avatar (@index_image) %>
+        <h3>&nbsp;&nbsp;&nbsp;<%= current_user.username %></h3></p>
+        <br />
+        <br />
+        <br />
+            @<%= current_user.handle %>
+      <br>
+      <!-- helper, see application_helper.rb -->
+      <%= tweeted_num_text (@counted_tweets) %>
       <br>
       <br>
       <hr/>
@@ -23,11 +26,13 @@
         <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
         <% end %>
 
+
+
         <% if current_user.following.count == 1 %>
-        <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other member
+        <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other member
         </b></p>
           <% else %>
-        <p>You are <u><%= link_to "following", 'tweets/following' %></u> <b><%= current_user.following.count %></b> other members</b></p>
+        <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other members</b></p>
         <% end %>
 
 
@@ -53,7 +58,6 @@
         <%= render partial: 'following' %>
         <hr />
       </div>
-      <div class = "testjs"></div>
     </div>
 </div>
 

@@ -6,10 +6,14 @@
       <b>Following</b>
       <br>
       <br>
-      <% current_user.following.pluck(:username, :handle).compact.each do |following_username, following_handle| %>
-        <%= following_username %>
-        &nbsp;&nbsp;&nbsp;<b>@<%= following_handle %></b>
+      <% current_user.following.each do |following| %>
+        <%= following.username %>
+        <%= following_list_avatar(following) %>
+        &nbsp;&nbsp;&nbsp;<b>@<%= following.handle %></b>
+        <%= link_to "Profile", followinguser_path(following.id), class: "btn btn-outline-primary rounded-pill tweet_left_options" %>
         <br />
+        <%= following.about %>
+        <hr />
       <% end %>
       <br>
       <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
@@ -21,19 +25,22 @@
       <br>
       <b><h2>Latest tweets from users you are following</h2></b>
       <br>
+      <div class="scrollable scrollbar-light-blue">
       <% current_user.following.each do |following| %>
         <% following.tweets.reverse.each do |tweet| %>
+          <%= following_list_avatar(following) %>
           <%= tweet.user.username %>
           <b>@<%= tweet.user.handle %></b>
           <br>
           <%= tweet.content %>
           <br>
+          <%= link_to "Reply", tweet_path(tweet.id) %>
           <br>
-          <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
-          <br />
+          <p class="text-small"><b>Tweeted </b> <%= time_ago_in_words(tweet.created_at) %> ago</p>
           <hr />
         <% end %>
       <% end %>
-     </div>
-   </div>
+      </div>
+    </div>
+  </div>
 </div>

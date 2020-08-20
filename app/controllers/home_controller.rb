@@ -1,15 +1,15 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, :except => [:welcome]
- 
+  before_action :authenticate_user!, except: [:welcome]
+
   def welcome
-  	@tweets = Tweet.all
+    @tweets = Tweet.all
   end
 
   def index
-  	@users = User.all
+    @users = User.all
   end
 
   def show
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 end

@@ -507,6 +507,21 @@ background-color: #82B1FF;
   scrollbar-color: #82B1FF #F5F5F5;
 }
 
+.date-small{
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.text-small{
+  font-size: 0.8rem;
+}
+
+.tweet-show-comment {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+
 .img-fluid {
   max-width: 100%;
   height: auto;
@@ -535,11 +550,38 @@ background-color: #82B1FF;
   color: #6c757d;
 }
 
+.follower_details {
+  float: left;
+}
+
+.follower-details-av {
+  display: inline-block;
+}
+
 .tweet_left_options {
  float: right;
  font-weight: bold;
  color: green; 
  padding: 10px;
+}
+
+.follower-block {
+  float: left;
+}
+
+.follower-block-left {
+  float: left;
+}
+
+span.a {
+  display: inline-block; /* the default for span */
+  padding: 5px; 
+}
+
+span.b {
+  display: inline-block;
+  width: 100%;
+  padding: 5px; 
 }
 
 

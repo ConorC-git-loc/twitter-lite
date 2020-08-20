@@ -8,7 +8,7 @@
     <%= f.search_field :username_cont, placeholder: 'Name', class: "form-control" %>
     </div>
     <div class="form-group">
-    <%= f.search_field :email_cont, placeholder: 'Email', class: "form-control" %>
+    <%= f.search_field :email_cont, placeholder: 'Interests', class: "form-control" %>
     </div>
     <div class="form-group">
     <%= f.search_field :handle_cont, placeholder: '@', class: "form-control" %>
@@ -21,6 +21,7 @@
   <table id="users" class="ml-2">
   <thead>
 	<tr>
+    <th style="padding:0 15px 0 15px;"></th>
 		<th style="padding:0 15px 0 15px;">Name</th>
 		<th style="padding:0 15px 0 15px;">About</th>
 		<th style="padding:0 15px 0 15px;">@</th>
@@ -31,20 +32,12 @@
 	<tbody>
 	<% @users.each do |user| %>
 	<tr>
+    <td style="padding:0 15px 0 15px;"><%= member_list_avatar(user) %></td>
 		<td style="padding:0 15px 0 15px;"><%= user.username %></td>
 		<td style="padding:0 15px 0 15px;"><%= user.about %></td>
 		<td style="padding:0 15px 0 15px;"><%= user.handle %></td>
     <td style="padding:0 15px 0 15px;"><%= link_to "Profile", user_path(user.id), class: "btn btn-outline-primary rounded-pill" %> </td>
 
-		<!--<td><% if current_user.id != user.id %> 
-             <% if current_user.following?(user) %>
-               <%= button_to "Unfollow", relationships_path(user_id: user.id), :class => "follow-sm-btn btn btn-primary rounded-pill" %>
-             <% else %>
-               <%= button_to "Follow", relationships_path(user_id: user.id), :class => "follow-sm-btn btn btn-primary rounded-pill" %>
-            <% end %>
-           <% end %></td>
-        <td stlye="padding:0 60px 0 60px;" col width="130" align="right"><b><%= user.followers.count %> Followers</b></td>
-	</tr>-->
 	<% end %>
 	</tbody>
   <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, class: "fixed-bottom" %>

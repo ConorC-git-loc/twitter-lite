@@ -2,23 +2,38 @@
 <div class="container-fluid text-center">
   <br>
 
-  <p><b>@<%= @tweet.user.handle %></b></p>
+  <p><%= tweets_index_avatar(@tweet) %><b>@<%= @tweet.user.handle %></b></p>
         <p class="text-muted">Joined <%= @tweet.user.created_at.strftime("%d %b %Y") %></p>
   <h1><%= @tweet.id %></h1>
 
   <p><%= @tweet.content %></p>
   <br>
   <br>
-  <b>Tweeted </b><%= time_ago_in_words(@tweet.created_at) %> ago
-
+  <p class="text-small"><b>Tweeted </b><%= time_ago_in_words(@tweet.created_at) %> ago</p>
   <br>
-  <br>
-  <% if current_user.id == @tweet.user.id %>
-  <%= button_to 'Remove Tweet', tweet_path(@tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-  <% end %>
-  <br>
-  <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+    <% if current_user.id == @tweet.user.id %>
+      <%= button_to 'Remove Tweet', tweet_path(@tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-primary" %>
+    <% end %>
   <br>
   <br>
 </div>
+</hr>
+
+
+<div class="text-center">
+  <%= form_for [@tweet, @comment], remote: true do |f| %>
+    <%= f.text_area :body, :rows => 5, style: 'width:70%;' %><br>
+    <%= f.submit "Reply", class: "btn btn-sm btn-primary" %>
+  <% end %>
+</div>
+<br>
+
+<p class="tweet_left_options text-small"><div id="comment-count" class="inline"><%= @comments.count %></div>&nbsp;Replies</p>
+
+<div id="comment_pane">
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>
+
 

@@ -1,8 +1,8 @@
 <div class="container_tweets scrollable scrollbar-light-blue">
     <% @tweets.reverse.each do |tweet| %>
-      <strong><%= link_to tweet.user.email, thisuser_path(tweet.user_id) %></strong>
         <br>
-        <strong>@<%= tweet.user.handle %></strong>
+        <%= latest_tweets_login(tweet) %>
+        <strong>@<%= link_to tweet.user.handle, thisuser_path(tweet.user_id) %></strong>
         <p class="text-muted">Joined <%= tweet.user.created_at.strftime("%d %b %Y") %></p>
         <br>
         <br>
@@ -12,7 +12,7 @@
         <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
         <br>
         <br>
-        <p class="tweet_left_options"><%= link_to 'Show Tweet', tweet, :style => "float:right" %></p>
+        <p class="tweet_left_options text-small"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %>&nbsp;&nbsp;<%= link_to 'Show Tweet', tweet, :style => "float:right" %></p>
         <br>
         <br>
         <hr/>

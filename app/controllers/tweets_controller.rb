@@ -1,33 +1,30 @@
 class TweetsController < ApplicationController
-  
-  before_action :set_tweet, only: [:show, :update, :destroy]
+  before_action :set_tweet, only: %i[show update destroy]
   before_action :authenticate_user!
   before_action :set_search
 
-
-
   def new
-  	@tweet = current_user.tweets.build
+    @tweet = current_user.tweets.build
   end
 
   def index
-  	@tweets = Tweet.all
+    @tweets = Tweet.all
     @tweet = Tweet.new
     @users = User.all
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true).paginate(page: params[:page], per_page: 5)
   end
 
-
   def current_user?
     super || User.new
   end
 
-
   def show
     @tweet = Tweet.find(params[:id])
+    @comment = Comment.new
+    @comments = @tweet.comments.reverse
   end
-        
+
   def create
     @tweet = current_user.tweets.build(tweet_params)
     respond_to do |format|
@@ -43,8 +40,6 @@ class TweetsController < ApplicationController
     end
   end
 
-  
-
   def destroy
     @tweet = Tweet.find(params[:id])
     respond_to do |format|
@@ -58,20 +53,13 @@ class TweetsController < ApplicationController
     end
   end
 
- 
-
-
-private 
+  private
 
   def set_tweet
     @tweet = Tweet.find(params[:id])
   end
 
-
   def tweet_params
-  	params.require(:tweet).permit(:user_id, :content)
-  end 
-
-
-
+    params.require(:tweet).permit(:user_id, :content, { comments: [:body] })
+  end
 end

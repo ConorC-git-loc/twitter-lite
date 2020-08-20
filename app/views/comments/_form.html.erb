@@ -1,0 +1,9 @@
+<%= simple_form_for [@tweet, @comment], remote:true do |f| %>
+
+<p><%= f.label :Add_reply %><br>
+   <%= f.text_area :body, :rows => 10, style: 'width:100%;' %>
+</p>
+<br>
+  <%= f.submit "Reply", class: "btn btn-primary" %>
+
+<% end %>

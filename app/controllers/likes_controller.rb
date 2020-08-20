@@ -1,9 +1,6 @@
 class LikesController < ApplicationController
-	before_action :find_tweet
-	before_action :find_like, only: [:destroy]
-
-
- 
+  before_action :find_tweet
+  before_action :find_like, only: [:destroy]
 
   def create
     if already_liked?
@@ -11,28 +8,19 @@ class LikesController < ApplicationController
     else
       @tweet.likes.create(user_id: current_user.id)
     end
-     respond_to do |format|
-      format.html
-      format.json { head :created }
-    end
+    redirect_to tweets_path
   end
-  
 
   def destroy
-    if !(already_liked?)
-      flash[:notice] = "Cannot unlike"
+    if !already_liked?
+      flash[:notice] = 'Cannot unlike'
     else
-     @like.destroy
+      @like.destroy
     end
-     respond_to do |format|
-      format.html
-      format.json { head :no_content }
-    end
+    redirect_to tweets_path
   end
 
-
   private
-
 
   def find_tweet
     @tweet = Tweet.find(params[:tweet_id])
@@ -46,5 +34,4 @@ class LikesController < ApplicationController
     Like.where(user_id: current_user.id, tweet_id:
     params[:tweet_id]).exists?
   end
-
 end

@@ -3,13 +3,11 @@
   <b>Your followers</b>
   <br>
   <br>
-
-   <% current_user.followers.pluck(:username, :handle).compact.each do |follower_username, follower_handle| %>
-     <%= follower_username %>
-     <b>&nbsp;&nbsp;&nbsp;@<%= follower_handle %></b>
-     <br />
+    <% current_user.followers.each do |follower| %>
+     <%= follower_list_avatar(follower) %>&nbsp;&nbsp;
+     <%= follower.username %>
+      &nbsp;&nbsp;&nbsp;<b>@<%= follower.handle %></b><br>
    <% end %>
-   <br>
 </div>
 
 

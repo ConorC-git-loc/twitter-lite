@@ -4,11 +4,17 @@
   <b>Your followers</b>
   <br>
   <br>
-   <% current_user.followers.pluck(:username, :handle).compact.each do |follower_username, follower_handle| %>
-     <%= follower_username %>
-      &nbsp;&nbsp;&nbsp;<b>@<%= follower_handle %></b>
-     <br />
-   <% end %>
-   <br>
+  <% current_user.followers.each do |follower| %>
+    <%= follower.username %>
+    <%= follower_list_avatar(follower) %><br>
+    &nbsp;&nbsp;&nbsp;<b>@<%= follower.handle %></b><br><br>
+    <%= follower.about %>
+    <br>
+    <br />
+    <hr />
+  <% end %>
+  <br>
   <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+  <br>
+  <br>
 </div>

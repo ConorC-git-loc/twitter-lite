@@ -2,42 +2,54 @@
   <div class="row">
     <div class="col-lg-6">
       <p><h2><b><%= @user.username %>'s Profile</b></h2></p>
+      <%= avatar_profile_page(@image_small) %>
       <% if current_user.following?(@user) %>
       <div class="btn btn-success">Following @<%= @user.handle %></div>
       <% end %>
       <br>
+      <br>
+      <%= @user.about %>
       <br>
       <% unless current_user.following?(@user) %>
         <p>@<%= @user.handle %></p>
         <p class="text-muted">Joined <%= @user.created_at.strftime("%d %b %Y") %></p>
       <% end %>
 
+
       <% if current_user.id != @user.id %>
         <% if current_user.following? (@user) %>
-          <%= link_to "Unfollow", relationships_path(user_id: @user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn-show btn btn-outline-primary rounded-pill" %>
-      <% else %>
-          <%= link_to "Follow", relationships_path(user_id: @user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn-show btn btn-outline-primary rounded-pill" %>
+          <%= link_to "Unfollow", relationships_path(user_id: @user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn-show btn btn-outline-primary rounded-pill", :id => "follow-btn-show" %>
+        <% else %>
+          <%= link_to "Follow", relationships_path(user_id: @user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn-show btn btn-outline-primary rounded-pill", :id => "follow-btn-show" %>
       <% end %>
      <% end %>
+
+
      <br>
      <br>
-     <b><%= @user.tweets.count %></b> Tweets &nbsp;&nbsp;&nbsp; <b><%= @user.followers.count %></b> Followers
+     <p class="inline"><b><%= @user.tweets.count %></b>&nbsp;Tweets &nbsp;&nbsp;&nbsp; <div id="follower_count" class="inline"><b><%= @user.followers.count %></b></div>&nbsp;Followers</p>
      <hr/>
-     <% @user.tweets.reverse.each do |tweet| %>
-     <br>
-     <br>
-     <p><%= tweet.content %></p>
-     <br>
-     <br>
-     <b>Tweeted </b><%= time_ago_in_words(tweet.created_at) %> ago
-     <br>
-     <br>
-     <% if current_user.id == tweet.user.id %>
-       <%= button_to 'Remove Tweet', tweet_path(tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-     <% end %>
-     <hr/>
-     <% end %>
-    </div>
+
+     <div class="scrollable">
+       <% @user.tweets.reverse.each do |tweet| %>
+       <br>
+       <br>
+       <p><%= tweet.content %></p>
+       <br>
+       <br>
+       <b>Tweeted </b><%= time_ago_in_words(tweet.created_at) %> ago
+       <br>
+       <br>
+       <% if current_user.id == tweet.user.id %>
+         <%= button_to 'Remove Tweet', tweet_path(tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+       <% end %>
+       <hr/>
+       <% end %>
+      </div>
+
+     </div>
+
+
     <div class="col-lg-3">
       <p><h2><b>Followers</b></h2></p>
       <br />
@@ -48,6 +60,8 @@
       <% end %>
       <hr />
     </div>
+
+
     <div class="col-lg-3">
       <p><h2><b>Following</b></h2></p>
       <br />

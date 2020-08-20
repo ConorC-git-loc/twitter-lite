@@ -10,21 +10,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#welcome'
 
-  resources :tweets
-
   resources :tweets do
+    resources :comments
     resources :likes
   end
 
+  resource :relationships, only: %i[create destroy]
 
-  resource :relationships, :only => [:create, :destroy]
-
- 
-  get '/users/:id', :to => 'home#show', :as => :user
-  get '/users/:id', :to => 'tweets#index', :as => :thisuser
-
-
-
-
-
+  get '/users/:id', to: 'home#show', as: :user
+  get '/users/:id', to: 'tweets#index', as: :thisuser
+  get '/users/:id', to: 'tweets#following', as: :followinguser
 end

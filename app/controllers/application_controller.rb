@@ -3,20 +3,18 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_search
 
-def after_sign_in_path_for(resource)
-  stored_location_for(resource) || tweets_path
-end
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || tweets_path
+  end
 
-
-protected
+  protected
 
   def set_search
     @q = User.ransack(params[:q])
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :handle, :about])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :handle, :about]) 
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username handle about])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[username avatar handle about])
   end
-	
 end

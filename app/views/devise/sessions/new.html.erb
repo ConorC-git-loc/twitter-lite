@@ -1,41 +1,40 @@
 
 <div class= "signup-padding container_login">
-      <div class= "col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center p-5 page-header">
-          <h2 class="page-header text-center">Welcome Back!</h2>
-          <div class="container">
-          <%= simple_form_for resource, as: resource_name, url: session_path(resource_name),
-                        html: { class: "form-horizontal center"} do |f| %>
+  <div class= "col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center p-5 page-header">
+      <h2 class="page-header text-center">Welcome Back!</h2>
+      <div class="container">
+      <%= simple_form_for resource, as: resource_name, url: session_path(resource_name),
+                    html: { class: "form-horizontal center"} do |f| %>
 
-            <div class="form-group">
-              <%= f.email_field :email, autofocus: true, placeholder: "Email Address", class: "form-control" %>
-            </div>
+        <div class="form-group">
+          <%= f.email_field :email, autofocus: true, placeholder: "Email Address", class: "form-control" %>
+        </div>
 
-            <div class="form-group">
-              <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
-            </div>
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+        </div>
 
-            <% if devise_mapping.rememberable? -%>
-              <div class="form-group">
-                  <div class="checkbox">
-                    <label>
-                      <%= f.check_box :remember_me %> Remember me
-                    </label>
-                  </div>
+        <% if devise_mapping.rememberable? -%>
+          <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :remember_me %> Remember me
+                </label>
               </div>
-            <% end -%>
+          </div>
+        <% end -%>
 
-            <div class="actions">
-              <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block" %>
-            </div>
-          <% end %>
+        <div class="actions">
+          <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block" %>
         </div>
-        <br>
-        <br>
-        <div class="page-header">
-          <%= render "devise/shared/links" %>
-        </div>
+      <% end %>
+      </div>
+    <br>
+    <br>
+    <div class="page-header">
+      <%= render "devise/shared/links" %>
     </div>
- 
+  </div>
 </div>
 
 
