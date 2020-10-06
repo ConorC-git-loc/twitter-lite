@@ -2,7 +2,9 @@
     <% @tweets.reverse.each do |tweet| %>
         <br>
         <%= latest_tweets_login(tweet) %>
-        <strong>@<%= link_to tweet.user.handle, thisuser_path(tweet.user_id) %></strong>
+        <%= link_to thisuser_path(tweet.user_id) do %>
+          <strong>@<%= tweet.user.handle %></strong>
+        <% end %>
         <p class="text-muted">Joined <%= tweet.user.created_at.strftime("%d %b %Y") %></p>
         <br>
         <br>
