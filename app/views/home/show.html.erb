@@ -38,7 +38,7 @@
       <div class="scrollable scrollbar-light-blue">
         <% if @user.tweets.count == 0 %>
           <b><%= @user.username %> has not tweeted yet</b>
-        <% end %>
+        <% else %>
         <% @user.tweets.reverse.each do |tweet| %>
         <div class="block">
         <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
@@ -117,6 +117,7 @@
     <br>
     <br>
     <hr/>
+    <% end %>
     <% end %>
   </div>
 </div>
