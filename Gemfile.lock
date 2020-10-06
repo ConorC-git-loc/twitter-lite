@@ -122,6 +122,8 @@ GEM
     gravatar_image_tag (1.2.0)
     groupdate (5.0.0)
       activesupport (>= 5)
+    heroku-deflater (0.6.3)
+      rack (>= 1.4.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     image_processing (1.11.0)
@@ -185,6 +187,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (6.0.2.1)
       actionpack (= 6.0.2.1)
       activesupport (= 6.0.2.1)
@@ -294,6 +301,7 @@ DEPENDENCIES
   faker!
   gravatar_image_tag
   groupdate
+  heroku-deflater
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
@@ -302,6 +310,7 @@ DEPENDENCIES
   pg
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
+  rails_12factor
   ransack!
   rspec-rails (~> 4.0.0.rc1)
   sass-rails (>= 6)
