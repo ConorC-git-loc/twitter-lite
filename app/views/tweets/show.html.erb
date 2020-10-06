@@ -5,6 +5,7 @@
       <br>
 
       <p><%= tweets_index_avatar(@tweet) %><b>@<%= @tweet.user.handle %></b></p>
+      <%= link_to "Profile", thisuser_path(@tweet.user.id), class: "btn btn-outline-primary rounded-pill tweet_right_options" %>
       <p><%= @tweet.content %></p>
       <p class="text-small small-text-grey">
         <% if @tweet.retweet_id? %>
