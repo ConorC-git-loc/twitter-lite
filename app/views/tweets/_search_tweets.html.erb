@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <%= search_form_for @q, url: tweets_path, class: "form-inline", remote: true do |f| %>
+	<%= f.search_field :content_cont, placeholder: 'Search Tweets', class: "form-control rounded-pill" %>
+	  &nbsp;&nbsp;
+	  <%= f.button :submit, class: "btn btn-primary rounded-pill" do %>
+	    <i class="fas fa-search search-icon"></i>
+	<% end %>
+  <% end %>
+</div>

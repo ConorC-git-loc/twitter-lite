@@ -2,14 +2,14 @@
 <div class= "col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
   <h1>Create Tweet</h1>
 
-
+  <hr />
   <%= simple_form_for @tweet do |f| %>
-    <b><%= f.label :create_your_tweet %></b>
     <br>
-    <%= f.text_area :content, :rows => 10, style: 'width:100%;' %>
+    <%= f.text_area :content, :placeholder => 'Tell the world...', :rows => 10, style: 'width:100%;' %>
     <br>
     <br>
     <%= f.submit 'Tweet', :class => "btn btn-outline-primary rounded-pill" %>
   <% end %>
+  <hr />
 
 </div>

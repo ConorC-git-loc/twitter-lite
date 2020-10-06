@@ -21,6 +21,11 @@ module ApplicationHelper
     result.html_safe
   end
 
+  
+
+
+  # Avatar helpers
+
   def index_avatar(_index_image)
     if current_user.avatar.attached?
       image_tag current_user.avatar.variant(resize: '150x150!'), class: 'rounded-circle'
@@ -28,6 +33,15 @@ module ApplicationHelper
       image_tag 'default_avatar.jpg', height: 100, width: 100, class: 'rounded-circle'
     end
   end
+
+  def sidebar_avatar(sidebar)
+    if current_user.avatar.attached?
+      image_tag current_user.avatar.variant(resize: '60x60!'), class: 'rounded-circle'
+    else
+      image_tag 'default_avatar.jpg', height: 100, width: 100, class: 'rounded-circle'
+    end
+  end
+
 
   def registration_avatar(_registration_image)
     if resource.avatar.attached?
@@ -85,11 +99,27 @@ module ApplicationHelper
     end
   end
 
+  def follower_small_avatar(follower)
+    if follower.avatar.attached?
+      image_tag follower.avatar.variant(resize: '30x30!'), class: 'rounded-circle'
+    else
+      image_tag 'default_avatar.jpg', height: 30, width: 30, class: 'rounded-circle'
+    end
+  end
+
   def comment_avatar(comment)
     if comment.user.avatar.attached?
       image_tag comment.user.avatar.variant(resize: '20x20!'), class: 'rounded-circle'
     else
       image_tag 'default_avatar.jpg', height: 20, width: 20, class: 'rounded-circle'
+    end
+  end
+
+  def tweet_list_avatar(user)
+    if user.avatar.attached?
+      image_tag user.avatar.variant(resize: '50x50!'), class: 'rounded-circle'
+    else
+      image_tag 'default_avatar.jpg', height: 30, width: 30, class: 'rounded-circle'
     end
   end
 end

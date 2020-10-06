@@ -1,0 +1,8 @@
+<div class= "mx-auto text-center form">
+  <%= simple_form_for @tweet do |f| %>
+    <hr />
+    <%= f.text_area :content, :placeholder => " What's Happening?", :rows => 2, style: 'width:100%; overflow:hidden;' %>
+    <hr />
+    <%= f.submit 'Tweet', :class => "btn btn-outline-primary rounded-pill text-center" %>
+  <% end %>
+</div>

@@ -9,7 +9,7 @@
         <p><%= tweet.content %></p>
         <br>
         <br>
-        <b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %>
+        <p class="text-small"><b>Tweeted on </b><%= tweet.created_at.strftime("%d %b %Y at %I:%M %p") %></p>
         <br>
         <br>
         <p class="tweet_left_options text-small"><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes' %>&nbsp;&nbsp;<%= link_to 'Show Tweet', tweet, :style => "float:right" %></p>

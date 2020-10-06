@@ -1,20 +1,26 @@
 <div class="container">
-  <br>
-  <br>
-  <b>Your followers</b>
-  <br>
-  <br>
-  <% current_user.followers.each do |follower| %>
-    <%= follower.username %>
-    <%= follower_list_avatar(follower) %><br>
-    &nbsp;&nbsp;&nbsp;<b>@<%= follower.handle %></b><br><br>
-    <%= follower.about %>
     <br>
-    <br />
-    <hr />
-  <% end %>
-  <br>
-  <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
-  <br>
-  <br>
+    <br>
+    <b>Your followers</b>
+    <br>
+    <br>
+    <% current_user.followers.each do |follower| %>
+      <%= follower_list_avatar(follower) %>&nbsp;
+      <%= follower.username %>
+      <%= link_to "Profile", followinguser_path(follower.id), class: "btn btn-outline-primary rounded-pill tweet_right_options" %>
+      &nbsp;&nbsp;&nbsp;<b>@<%= follower.handle %></b><br><br>
+      <p class="text-small small-text-grey">
+        Joined <%= time_ago_in_words(follower.created_at) %> ago
+      </p>
+      <%= follower.about %><br><br>
+      <p class="text-small small-text-grey">
+        Followed you <%= time_ago_in_words(follower.created_at) %> ago
+      </p>
+      <hr />
+    <% end %>
+    <br>
+    <%= link_to "Return", tweets_path, class: "btn btn-primary" %>
+    <br>
+    <br>
+  </div>
 </div>

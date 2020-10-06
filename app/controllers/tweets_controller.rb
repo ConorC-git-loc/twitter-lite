@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[show update destroy]
+  before_action :set_tweet, only: %i[show update destroy retweet]
   before_action :authenticate_user!
   before_action :set_search
 
@@ -9,20 +9,28 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all
+    @tweets = @q.result(distinct: true).paginate(page: params[:tweets_page], per_page: 10).order(created_at: :desc)
     @tweet = Tweet.new
+    @comment = Comment.new
     @users = User.all
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).paginate(page: params[:page], per_page: 5)
+    @users = @search.result(distinct: true).paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+
 
   def current_user?
     super || User.new
   end
 
+
   def show
     @tweet = Tweet.find(params[:id])
     @comment = Comment.new
     @comments = @tweet.comments.reverse
+    @comments_count = @tweet.comments.count
   end
 
   def create
@@ -33,12 +41,14 @@ class TweetsController < ApplicationController
         format.json { render :index, status: :created, location: @tweet }
         format.js
       else
-        format.html { render :new }
+        format.html { redirect_to tweets_new_path, alert: 'Tweet must be 255 characters or less' }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
         format.js
       end
     end
   end
+
+
 
   def destroy
     @tweet = Tweet.find(params[:id])
@@ -52,6 +62,19 @@ class TweetsController < ApplicationController
       end
     end
   end
+
+
+
+  def retweet
+    @retweet = @tweet.retweets.build(user: current_user)
+      if @retweet.save
+        redirect_to @retweet, notice: 'Retweeted!'
+      else
+        redirect_to root_path, alert: 'Cannot retweet'
+      end
+  end
+
+
 
   private
 

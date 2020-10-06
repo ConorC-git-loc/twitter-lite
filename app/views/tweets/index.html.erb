@@ -4,19 +4,19 @@
     <div class="col-lg-6">
       <% if user_signed_in? %>
       <br>
-      <!-- helper, avatar on index page, see application_helper.rb -->
-      <p class="inline"><%= index_avatar (@index_image) %>
-        <h3>&nbsp;&nbsp;&nbsp;<%= current_user.username %></h3></p>
-        <br />
-        <br />
-        <br />
-            @<%= current_user.handle %>
-      <br>
-      <!-- helper, see application_helper.rb -->
-      <%= tweeted_num_text (@counted_tweets) %>
-      <br>
-      <br>
-      <hr/>
+        <div class="row">
+          <div class="col-3">
+          <!-- helper, avatar on index page, see application_helper.rb -->
+            <%= link_to thisuser_path(current_user.id) do %>
+              <%= index_avatar (@index_image) %>
+            <% end %>
+          </div>
+          <div class="col-8">
+            <%= render partial: 'index_tweet_form' %>
+          </div>
+        </div>
+        <%= tweeted_num_text (@counted_tweets) %>
+        <hr/>
 
 
 
@@ -29,28 +29,24 @@
 
 
         <% if current_user.following.count == 1 %>
-        <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other member
-        </b></p>
-          <% else %>
-        <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other members</b></p>
+        <pre>
+          <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other member
+          </b></p>
+            <% else %>
+          <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other members</b></p>
+        </pre>
         <% end %>
+
 
 
       <% end %>
 
-
-
-      <br>
-      <br>
-      <%= button_to "Tweet", new_tweet_path(@tweet), method: :get, class: "btn-outline-primary btn rounded-pill" %>
-      <br>
-      <br>
       
-      <%= render partial: 'tweets_index' %>
+        <%= render partial: 'search_tweets' %>
+        
+        <%= render partial: 'tweets_index', locals: { tweets: @tweets } %>
 
       <div class="col-lg-6">
-        <%= render partial: '/users/search_index' %>
-        <hr />
         <%= render partial: '/shared/chart1' %>
         <hr />
         <%= render partial: 'follower' %>
@@ -59,6 +55,7 @@
         <hr />
       </div>
     </div>
+  </div>
 </div>
 
 

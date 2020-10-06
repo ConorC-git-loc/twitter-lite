@@ -7,57 +7,42 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/e461c04938.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
 
 
   <body>
 
 
-    <% if notice %>
+  <% if notice %>
     <div id="notice_wrapper">
       <p class="alert alert-success text-center"><%= notice %>
         <button type="button" class="close" data-dismiss="alert">&times;</button><br>
       </p>
     </div>
-    <% end %>
-    <% if alert %>
+  <% end %>
+  <% if alert %>
     <div id="notice_wrapper">
       <p class="alert alert-danger text-center">
         <%= alert %>
       </p>
    </div>
-   <% end %>
+  <% end %>
 
-      <% if (user_signed_in?) %>
-       
-        <nav class="navbar">
-          <%= link_to tweets_path, class: "navbar-item" do %>
-            <h1>Twitter-lite</h1>
-            <% if user_signed_in? %>
-              <h4><%= link_to "Manage Account", edit_user_registration_path, class: "h7" %></h4>
-              <b><%= button_to "What's Happening", tweets_following_path, :method => :get, class: "btn btn-followers" %></b>
-              <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "h7" %>
-            <% else %>
-              <%= link_to 'Login', new_user_session_path, class: "h7" %>
-            <% end %>
-          <% end %>
-        </nav>
-
-        <% else %>
-
-        <nav class="navbar-log-out">
-            <h1>Twitter-lite</h1>
-        </nav>
-
-      <% end %>
-  
-    <%= yield %>
-
-  <footer class="page-footer font-small blue">
-    <div class="footer-copyright text-center page-header py-3">
-      <b>Under Construction</b>
+  <div id="wrapper">
+    <%= render partial: 'shared/sidebar' %>
+    <div id="content">
+    <%= render partial: 'shared/navbar' %>
+      <%= yield %>
     </div>
-  </footer>
+    <%= render partial: 'shared/footer' %>
+  </div>
+
+
+
  
   </body>
 </html>

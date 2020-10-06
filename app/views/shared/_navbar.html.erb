@@ -1,0 +1,21 @@
+<% if (user_signed_in?) %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <%= link_to '#', class: "h7", id: "sidebarShow" do %>
+      <i class="fas fa-bars"></i>
+      <% end %>
+      <% if user_signed_in? %>
+        <b><%= button_to "What's Happening", tweets_following_path, :method => :get, class: "btn btn-followers" %></b>
+        <%= link_to 'Home', tweets_path %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: "h7" %>
+      <% end %>
+    </div>
+  </nav>
+
+  <% else %>
+
+  <nav class="navbar-log-out">
+    <h1>Twitter-lite</h1>
+  </nav>
+<% end %>

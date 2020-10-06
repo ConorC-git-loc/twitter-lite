@@ -39,7 +39,7 @@
 
             <div class="form-group">
               <%= f.label :about_you %><br>
-              <%= f.text_area :about, autofocus: true, placeholder: "Let everyone know about you", class: "form-control" %>
+              <%= f.text_area :about, autofocus: true, placeholder: "Let everyone know about you", :rows => 5, class: "form-control" %>
             </div>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

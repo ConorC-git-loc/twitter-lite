@@ -12,8 +12,10 @@ require("chart.js")
 require("jquery")
 
 //= require jquery3
+//= require jquery-ui
 //= require popper
 //= require bootstrap-sprockets
+
 
 
 
@@ -65,5 +67,41 @@ $(document).on('ajax:success', '.follow-btn-show', function(e){
   }
   $("#follower_count").load(" #follower_count > *")
 });
+
+
+$(document).on('div#comments').on('div#comments');
+ $(function() {
+  $('a#show-comments').click(function(event){
+    event.preventDefault();
+    $('div#comments').toggle();
+  });
+});
+
+
+//sidebar
+
+
+$(document).on('turbolinks:load', function () {
+  $('#sidebarShow').on('click', function (event) {
+    event.preventDefault();
+    $('#sidebar, #content').toggleClass('active');
+    $('.collapse.in').toggleClass('in');
+    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+  });
+});
+
+
+$(document).click(function(e) {
+  var sidebar = $("#sidebar, #sidebarShow");
+  if (!sidebar.is(e.target) && sidebar.has(e.target).length === 0) {
+    sidebar.addClass('active')
+  }
+});
+
+
+
+
+
+
 
 

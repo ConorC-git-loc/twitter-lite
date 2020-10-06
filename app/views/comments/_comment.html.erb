@@ -1,11 +1,18 @@
-
-<p class="text-small" style="padding-left: 50px; padding-right: 50px">
-  @<%= comment.user.handle %>&nbsp;&nbsp;<%= comment_avatar(comment) %>
-  <br>
-  <br>
-  <%= comment.body %>
-  <br>
-  <br>
-  Replied <%= time_ago_in_words(comment.created_at) %> ago
-  <hr />
-</p>
+<div class="indent-right">
+  <div class="row">
+    <div class="col-2">
+      <%= tweets_index_avatar(@tweet) %>
+    </div>
+    <div class="col-5">
+        <b><%= comment.user.username %></b>&nbsp;&nbsp;@<%= comment.user.handle %>
+        <p class="text-small small-text-grey">Replying to <%= link_to thisuser_path(@tweet.user_id) do %>
+          @<%= comment.tweet.user.handle %>
+          <% end %>
+          </p>
+        <%= comment.body %>
+        <br>
+        <p class="text-small small-text-grey">Replied <%= time_ago_in_words(comment.created_at) %> ago</p>
+        <hr />
+    </div>
+  </div>
+</div>

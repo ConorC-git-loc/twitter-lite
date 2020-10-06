@@ -10,8 +10,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_search
-    @q = User.ransack(params[:q])
+    @search = User.ransack(params[:q])
+    @q = Tweet.ransack(params[:q])
   end
+
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[username handle about])
