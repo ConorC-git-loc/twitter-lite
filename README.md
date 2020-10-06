@@ -44,6 +44,8 @@ Status: July 29th, app development
 
 Next: enhance features, testing, styling (implement Highcharts library)
 
+Edit readme
+
 
 
 * Ruby 2.7.0
