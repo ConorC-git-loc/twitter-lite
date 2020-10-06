@@ -16,6 +16,9 @@
         <%= link_to '<i class="fas fa-chart-bar"></i> Analytics <h6 style="color:red;">(Coming Soon)</h1>'.html_safe, '#', class: "btn btn-menu rounded-pill" %>
         <br>
         <br>
+        <%= link_to '<i class="fas fa-user-plus"></i> Search Users'.html_safe, '/home/search_index', class: "btn btn-menu rounded-pill" %>
+        <br>
+        <br>
         <%= link_to '<i class="fas fa-user-plus"></i> Followers'.html_safe, '/tweets/followers', class: "btn btn-menu rounded-pill" %>(<%= current_user.followers.count %>)
         <br>
         <br>
