@@ -6,17 +6,20 @@
           <%= current_user.username %>
       </div>
 
-      <ul class="sidebar-pad">
-          <p>Dummy Heading</p> 
-               <%= link_to '<i class="fas fa-cog"></i> Manage Account'.html_safe, edit_user_registration_path, class: "btn btn-menu rounded-pill" %>
-          <br></br>
-               <%= link_to '<i class="fas fa-home"></i> Profile'.html_safe, '#', class: "btn btn-menu rounded-pill" %> 
-          <br></br>
-               <%= link_to '<i class="fas fa-chart-bar"></i> Analytics'.html_safe, '#', class: "btn btn-menu rounded-pill" %>
-          <br><br>
-             <%= link_to '<i class="fas fa-user-plus"></i> Followers'.html_safe, '/tweets/followers', class: "btn btn-menu rounded-pill" %>(<%= current_user.followers.count %>)
-          <br><br>
-             <%= link_to '<i class="fas fa-user-check"></i> Following'.html_safe, '/tweets/following', class: "btn btn-menu rounded-pill" %>(<%= current_user.following.count %>)      
+      <ul class="sidebar-pad"> 
+        <%= link_to '<i class="fas fa-cog"></i> Manage Account'.html_safe, edit_user_registration_path, class: "btn btn-menu rounded-pill" %>
+        <br>     
+        <br>
+        <%= link_to '<i class="fas fa-home"></i> Profile'.html_safe, thisuser_path(current_user.id), class: "btn btn-menu rounded-pill" %> 
+        <br>  
+        <br>
+        <%= link_to '<i class="fas fa-chart-bar"></i> Analytics <h6 style="color:red;">(Coming Soon)</h1>'.html_safe, '#', class: "btn btn-menu rounded-pill" %>
+        <br>
+        <br>
+        <%= link_to '<i class="fas fa-user-plus"></i> Followers'.html_safe, '/tweets/followers', class: "btn btn-menu rounded-pill" %>(<%= current_user.followers.count %>)
+        <br>
+        <br>
+        <%= link_to '<i class="fas fa-user-check"></i> Following'.html_safe, '/tweets/following', class: "btn btn-menu rounded-pill" %>(<%= current_user.following.count %>)      
       </ul>
       <hr />
 

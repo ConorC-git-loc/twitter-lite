@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def tweeted_num_text(_counted_tweets)
     result = "<b>#{current_user.tweets.count}</b> tweet"
-    result += 's' if current_user.tweets.count > 1
+    result += 's' if current_user.tweets.count > 1 || current_user.tweets.count == 0
     result.html_safe
   end
 

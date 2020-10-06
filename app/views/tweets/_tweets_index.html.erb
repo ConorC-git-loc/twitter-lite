@@ -21,7 +21,10 @@
               <%= tweets_index_avatar(tweet) %>
             </div>
             <div class="col-10">
-                <strong><%= tweet.user.username %></strong>&nbsp;&nbsp;<div class="text-inline-tweet">@<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %></div>
+                <strong><%= tweet.user.username %></strong>&nbsp;&nbsp;
+                <div class="text-inline-tweet">
+                  @<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %>  
+                </div>
               <br>
               <br>
               <p>
@@ -42,10 +45,9 @@
         
 
 
-            <!-- like buttons -->
+        <!-- like buttons -->
         <div class="row tweet-buttons">
-          <div class="col-2">
-            
+          <div class="col-2">           
             <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
               <% if pre_like %>
                 <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, tweet_like_path(tweet, pre_like), data: { remote: true, type: :json, method: :delete }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
@@ -84,15 +86,16 @@
               <p class="modal-title tweet-modal-text text-inline-tweet" id="exampleModalLongTitle">
                 <%= tweets_index_avatar(tweet) %>&nbsp;&nbsp;<strong><%= tweet.user.username %></strong>&nbsp;&nbsp;@<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %>
               </p>
-              <hr />
               <p class= "tweet-modal-text"><%= tweet.content %></p>
               <div class="modal-body">
                 <div class="text-center">
                 <%= simple_form_for [tweet, @comment] do |f| %>
                 <hr />
-                  <%= f.text_area :body, :placeholder => 'Reply to', :rows => 5, style: 'width:80%;' %><br>
+                  <%= f.text_area :body, :placeholder => 'Reply', :rows => 5, style: 'width:80%;' %><br>
                   <hr />
-                  <%= f.submit "Reply", class: "btn btn-sm btn-primary" %>
+                  <%= button_tag( :class => "rounded-pill btn btn-primary btn-sm") do %>
+                    <i class="fas fa-feather-alt"></i>
+                  <% end %>
                 <% end %>
                 </div>
                 <% tweet.comments.each do |comment| %>

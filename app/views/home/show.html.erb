@@ -104,8 +104,10 @@
               <div class="modal-body">
                 <div class="text-center">
                 <%= simple_form_for [tweet, @comment] do |f| %>
-                  <%= f.text_area :body, :rows => 5, style: 'width:70%;' %><br>
-                  <%= f.submit "Reply", class: "btn btn-sm btn-primary" %>
+                  <%= f.text_area :body, :rows => 5, :placeholder => "Reply", style: 'width:70%;' %><br>
+                  <%= button_tag( :class => "rounded-pill btn btn-primary btn-sm") do %>
+                    <i class="fas fa-feather-alt"></i>
+                  <% end %>
                 <% end %>
                 </div>
               </div>

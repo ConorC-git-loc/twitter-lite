@@ -29,12 +29,10 @@
 
 
         <% if current_user.following.count == 1 %>
-        <pre>
           <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other member
           </b></p>
             <% else %>
-          <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other members</b></p>
-        </pre>
+          <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other members</p>
         <% end %>
 
 
