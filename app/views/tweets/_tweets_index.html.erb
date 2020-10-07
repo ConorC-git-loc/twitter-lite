@@ -6,12 +6,12 @@
           <p class="tweet_right_options tweet_break">
             <% if current_user.id != tweet.user.id %> 
               <% if current_user.following?(tweet.user) %>
-                  <%= link_to "Unfollow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn btn btn-sm btn-outline-primary rounded-pill" %>
+                  <%= link_to "Unfollow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn btn btn-md btn-outline-primary rounded-pill" %>
                 <% else %>
-                  <%= link_to "Follow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn btn btn-sm btn-outline-primary rounded-pill" %>
+                  <%= link_to "Follow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn btn btn-md btn-outline-primary rounded-pill" %>
               <% end %>
             <% end %>
-            &nbsp;<%= link_to "Profile", thisuser_path(tweet.user.id), class: "btn btn-outline-primary btn-sm rounded-pill tweet_right_options" %>
+            &nbsp;<%= link_to "Profile", thisuser_path(tweet.user.id), class: "btn btn-outline-primary btn-md rounded-pill tweet_right_options" %>
           </p>
 
           <br>

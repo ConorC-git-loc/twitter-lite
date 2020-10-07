@@ -631,6 +631,12 @@ background-color: #82B1FF;
  padding-bottom: 15px;
 }
 
+.tweet_middle_options {
+  float: center;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
 .tweet_right_options {
  float: right;
  font-weight: bold;
@@ -3258,6 +3264,19 @@ fieldset:disabled a.btn {
 .tweet-index-margin-profile {
   margin-left: 30px;
   margin-right: 30px;
+}
+
+.btn-outline-following {
+  color: #007bff;
+  border-color: #007bff;
+  font-weight: bold;
+  width: 150px;
+}
+
+.btn-outline-following:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .btn-outline-primary {

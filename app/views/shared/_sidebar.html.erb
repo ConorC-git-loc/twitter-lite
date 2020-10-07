@@ -29,8 +29,9 @@
       <ul class="sidebar-pad">
         <%= link_to 'Tweet', new_tweet_path, class: "btn btn-lg btn-block btn-primary text-center rounded-pill" %>
       </ul>
-
-      <ul class="sidebar-footer">
+      <br>
+      <br>
+      <ul>
         <%= link_to '<i class="fas fa-sign-out-alt"></i> Log out'.html_safe, destroy_user_session_path, class: "btn btn-menu rounded-pill", :method => :delete %>
       </ul>
     <% end %>

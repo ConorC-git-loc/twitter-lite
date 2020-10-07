@@ -17,13 +17,13 @@
         <hr/>
 
 
-
+        <div class="row">
+          <div class="col-4">
         <% if current_user.followers.count == 1 %>
         <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "follower", 'tweets/followers' %></u></p>
           <% else %>
         <p>You have <b><%= current_user.followers.count %> </b><u><%= link_to "followers", 'tweets/followers' %></u></p>
         <% end %>
-
 
 
         <% if current_user.following.count == 1 %>
@@ -32,6 +32,12 @@
             <% else %>
           <p class="inline">You are <u><%= link_to "following", 'tweets/following' %></u> <b><div id="following_count" class="inline">&nbsp;<%= current_user.following.count %></div></b>&nbsp;other members</p>
         <% end %>
+        </div>
+
+        <div class="col-4 text-center">
+          <b><%= button_to "Timeline", tweets_following_path, :method => :get, class: "btn btn-outline-primary btn-md rounded-pill" %></b>
+        </div>
+      </div>
 
 
 

@@ -48,6 +48,10 @@ class TweetsController < ApplicationController
     end
   end
 
+  def following
+    @tweet = Tweet.new
+  end
+
 
 
   def destroy
