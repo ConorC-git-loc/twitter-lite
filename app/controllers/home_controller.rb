@@ -5,10 +5,6 @@ class HomeController < ApplicationController
     @tweets = Tweet.all
   end
 
-  def index
-    @users = User.all
-  end
-
   def search_index
     @users = User.all
     @users = @search.result(distinct: true).paginate(page: params[:page], per_page: 10)

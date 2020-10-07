@@ -1,5 +1,4 @@
-<div class="tweet-display top-margin" id="tweets">
-  <div class="scrollable scrollbar-light-blue">
+<div class="container-flex tweet-index-margin tweet-display top-margin" id="tweets">
       <% @tweets.each do |tweet| %>
       <div class="block">
         <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
@@ -35,10 +34,9 @@
                 <p class="text-small small-text-grey">Retweeted
                   <%= link_to thisuser_path(tweet.source_user_id) do %>
                     @<%= tweet.username %>
-                    <% end %>
-                  <%= tweet.retweet_count %>
-               <% end %>
+                  <% end %>
                 </p>
+              <% end %>
             </div>
           </div>
         </div>
@@ -98,17 +96,23 @@
                   <% end %>
                 <% end %>
                 </div>
-                <% tweet.comments.each do |comment| %>
+                <% if tweet.comments.count == 1 %>
+                  <%= tweet.comments.count %> Reply
+                <% else %>
+                  <%= tweet.comments.count %> Replies
+                <% end %>
+                <br>
+                <br>
+                <% tweet.comments.reverse.each do |comment| %>
                 <div class="row">
                   <div class="col-1">
-                  <%= comment_avatar(comment) %>
-                </div>
+                    <%= comment_avatar(comment) %>
+                  </div>
                   <div class="col-10">
                   <p class="text-small small-text-grey">
                     <strong><%= comment.user.username %></strong>
                     &nbsp;&nbsp;<%= time_ago_in_words(comment.created_at) %>
                   </p>
-                  <br>
                   <%= comment.body %>
                   </div>
                 </div>
@@ -123,7 +127,6 @@
       <div id="infinite-scrolling">
         <%= will_paginate @tweets, :param_name => 'tweets_page' %>
       </div>
-    </div>
   </div>
 </div>
 

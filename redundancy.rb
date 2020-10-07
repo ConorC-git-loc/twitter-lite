@@ -198,3 +198,13 @@
                 </button>
                 &nbsp;&nbsp;<%= tweet.comments.count %><%= link_to 'Show', tweet_path(tweet.id) %>
               </div>
+
+
+<div class="col-lg-6">
+  <%= render partial: '/shared/chart1' %>
+  <hr />
+  <%= render partial: 'follower' %>
+  <hr />
+  <%= render partial: 'following' %>
+  <hr />
+</div>

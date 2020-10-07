@@ -21,8 +21,13 @@ module ApplicationHelper
     result.html_safe
   end
 
-  
-
+  def reply_count(_reply_counts)
+    if tweet.comments.count == 1 
+      tweet.comments.count Reply
+    else 
+      tweet.comments.count Replies
+    end
+  end  
 
   # Avatar helpers
 
