@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def tweeted_num_text(_counted_tweets)
-    result = "<b>#{current_user.tweets.count}</b> tweet"
+    result = "<b>#{current_user.tweets.count}</b> Tweet" 
     result += 's' if current_user.tweets.count > 1 || current_user.tweets.count == 0
     result.html_safe
   end
@@ -26,6 +26,16 @@ module ApplicationHelper
       tweet.comments.count Reply
     else 
       tweet.comments.count Replies
+    end
+  end
+
+  #link_to helpers
+
+  def update_pin(tweet)
+    if tweet.pin == false
+      link_to 'Pin to your profile', pin_tweet_path(tweet), method: :patch, class: "dropdown-item"
+    else
+      link_to 'Unpin', unpin_tweet_path(tweet), method: :patch, class: "dropdown-item"
     end
   end  
 
@@ -63,6 +73,15 @@ module ApplicationHelper
       image_tag 'default_avatar.jpg', height: 100, width: 100, class: 'rounded-circle'
     end
   end
+
+  def retweets_index_avatar(tweet)
+    if tweet.source_tweet.user.avatar.attached?
+      image_tag tweet.source_tweet.user.avatar.variant(resize: '50x50!'), class: 'rounded-circle'
+    else
+      image_tag 'default_avatar.jpg', height: 50, width: 50, class: 'rounded-circle'
+    end
+  end
+
 
   def tweets_index_avatar(tweet)
     if tweet.user.avatar.attached?

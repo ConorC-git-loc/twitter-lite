@@ -1,0 +1,12 @@
+<% current_user.comments.reverse.each do |comment| %>
+  <p class="text-small">
+    @<%= comment.user.handle %>&nbsp;&nbsp;<%= comment_avatar(comment) %>
+     <br>
+     <br>
+     <%= comment.body %>
+     <br>
+     <br>
+     Replied <%= time_ago_in_words(comment.created_at) %> ago
+  </p>
+  <hr />
+<% end %>

@@ -4,9 +4,14 @@ class Tweet < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   belongs_to :source_tweet, optional: true, inverse_of: :retweets, class_name: 'Tweet', foreign_key: 'retweet_id'
-  has_many :retweets, inverse_of: :source_tweet, class_name: 'Tweet', foreign_key: 'retweet_id'
+  has_many :retweets, inverse_of: :source_tweet, class_name: 'Tweet', foreign_key: 'retweet_id', dependent: :destroy
 
   validates :content, presence: true, unless: :retweet_id?, length: { maximum: 255 }
+
+  scope :pin,  -> { where(pin:true) }
+  scope :no_pin, -> (id) { where.not(id: id) if id }
+
+  after_save :ensure_only_one_pinned_tweet
 
   
 
@@ -42,6 +47,14 @@ class Tweet < ApplicationRecord
   	end
   end
 
+  def source_tweet_id
+    if source_tweet
+      source_tweet.id
+    else
+      super
+    end
+  end
+
   def source_user_id
   	if source_tweet
   	  source_tweet.user_id
@@ -50,6 +63,12 @@ class Tweet < ApplicationRecord
   	end
   end
 
+  private
+
+  def ensure_only_one_pinned_tweet
+    user.tweets.pin.no_pin(id).update_all(pin: false) if pin?
+  end
 end
+
 
 

@@ -208,3 +208,14 @@
   <%= render partial: 'following' %>
   <hr />
 </div>
+
+<div class="col-1">
+              <% unless tweet.source_tweet.retweet_id.blank? || tweet.user_id == current_user.id %>
+                <%= link_to '<i class="fas fa-retweet"></i>'.html_safe, retweet_tweet_path(tweet.source_tweet_id), class: "retweet-index btn btn-sm btn-primary rounded-pill", method: :post %>&nbsp;&nbsp;<%= tweet.source_tweet.retweets.count %>
+              <% else %>
+              <div class="retweet-index btn btn-sm btn-retweeted rounded-pill">
+                 <i class="fas fa-retweet"></i>
+              </div>
+               &nbsp;&nbsp;<%= tweet.source_tweet.retweets.count %>
+              <% end %>
+            </div>

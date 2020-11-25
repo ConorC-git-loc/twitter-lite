@@ -1,0 +1,122 @@
+<div class="block">
+        <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
+        <div class="inner">
+          <p class="tweet_right_options tweet_break">
+            <% if current_user.id != tweet.user.id %> 
+              <% if current_user.following?(tweet.user) %>
+                  <%= link_to "Unfollow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn btn btn-md btn-outline-primary rounded-pill" %>
+                <% else %>
+                  <%= link_to "Follow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn btn btn-md btn-outline-primary rounded-pill" %>
+              <% end %>
+            <% end %>
+            &nbsp;<%= link_to "Profile", thisuser_path(tweet.user.id), class: "btn btn-outline-primary btn-md rounded-pill tweet_right_options" %>
+          </p>
+
+          <br>
+          <div class="row">
+            <div class="col-sm-2-5">
+              <%= tweets_index_avatar(tweet) %>
+            </div>
+            <div class="col-10">
+                <strong><%= tweet.user.username %></strong>&nbsp;&nbsp;
+                <div class="text-inline-tweet">
+                  @<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %>  
+                </div>
+              <% if tweet.retweet_id? %>
+              <p class="text-small small-text-grey"><i class="fas fa-retweet"></i>&nbsp;Retweeted
+                <%= link_to thisuser_path(tweet.source_user_id) do %>
+                  @<%= tweet.username %>
+                <% end %>
+              </p>
+              <% end %>
+              <br>
+              <p>
+                <%= tweet.content %>
+              </p>
+              <br>
+            </div>
+          </div>
+        </div>
+        
+
+
+        <!-- like buttons -->
+        <div class="row tweet-buttons">
+          <div class="col-1">           
+            <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
+              <% if pre_like %>
+                <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, tweet_like_path(tweet, pre_like), data: { remote: true, type: :json, method: :delete }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
+              <% else %>
+                <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, tweet_likes_path(tweet), data: { remote: true, type: :json, method: :post }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
+              <% end %>
+              &nbsp;&nbsp;<%= tweet.likes.count %>
+          </div> 
+
+        
+
+
+          <div class="col-1">
+            <%= link_to '<i class="fas fa-retweet"></i>'.html_safe, retweet_tweet_path(tweet.id), class: "retweet-index btn btn-sm btn-primary rounded-pill", method: :post %>&nbsp;&nbsp;<%= tweet.retweets.count %>
+          </div>
+            
+                
+            
+          
+
+          <div class="col-1">
+              <button type="button" class="btn btn-sm btn-primary rounded-pill" data-toggle="modal" data-target="#exampleModalCenter#<%= tweet.id %>">
+                  <i class="fas fa-comment-dots"></i>
+                </button> &nbsp;&nbsp;<%= tweet.comments.count %>
+          </div>
+        </div>
+      </div>
+      
+
+      
+
+<!-- Reply Modal -->
+      <div class="modal fade" id="exampleModalCenter#<%= tweet.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <p class="modal-title tweet-modal-text text-inline-tweet" id="exampleModalLongTitle">
+                <%= tweets_index_avatar(tweet) %>&nbsp;&nbsp;<strong><%= tweet.user.username %></strong>&nbsp;&nbsp;@<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %>
+              </p>
+              <p class= "tweet-modal-text"><%= tweet.content %></p>
+              <div class="modal-body">
+                <div class="text-center">
+                <%= simple_form_for [tweet, @comment] do |f| %>
+                <hr />
+                  <%= f.text_area :body, :placeholder => 'Reply', :rows => 5, style: 'width:80%;' %><br>
+                  <hr />
+                  <%= button_tag( :class => "rounded-pill btn btn-primary btn-sm") do %>
+                    <i class="fas fa-feather-alt"></i>
+                  <% end %>
+                <% end %>
+                </div>
+                <% if tweet.comments.count == 1 %>
+                  <%= tweet.comments.count %> Reply
+                <% else %>
+                  <%= tweet.comments.count %> Replies
+                <% end %>
+                <br>
+                <br>
+                <% tweet.comments.reverse.each do |comment| %>
+                <div class="row">
+                  <div class="col-1">
+                    <%= comment_avatar(comment) %>
+                  </div>
+                  <div class="col-10">
+                  <p class="text-small small-text-grey">
+                    <strong><%= comment.user.username %></strong>
+                    &nbsp;&nbsp;<%= time_ago_in_words(comment.created_at) %>
+                  </p>
+                  <%= comment.body %>
+                  </div>
+                </div>
+                <hr />
+                <% end %>
+              </div>
+          </div>
+        </div>
+      </div>   
+      <hr/>

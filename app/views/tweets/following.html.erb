@@ -1,44 +1,45 @@
-<div class="container-flex tweet-index-margin">
-  <%= render partial: 'header_info' %>
-      <br>
-      <br>
-      <b><h2>Latest tweets from users you are following</h2></b>
-      <br>
-      <% current_user.following.each do |following| %>
-        <% following.tweets.reverse.each do |tweet| %>
-        <div class="row">
-          <div class="col-2">
-            <%= tweets_index_avatar(tweet) %>
-          </div>
-            <div class="col-10">
-              <strong><%= tweet.user.username %></strong>&nbsp;&nbsp;
-              <div class="text-inline-tweet">
-                @<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %>
-                <%= link_to "Profile", followinguser_path(following.id), class: "btn btn-outline-primary btn-sm rounded-pill tweet_right_options" %>
-              </div>
-              <br>
-              <%= tweet.content %>
-              
-              <br>
-              <br>
-              <div class="row tweet-buttons">
-                <div class="col-2">
-                <%= link_to '<i class="fas fa-comment-dots"></i>'.html_safe, tweet_path(tweet.id), class: "btn btn-sm btn-primary rounded-pill" %>&nbsp;&nbsp;<%= tweet.comments.count %>
-                </div>
-                  <div class="col-2">
-                    <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
-                      <% if pre_like %>
-                        <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, tweet_like_path(tweet, pre_like), data: { remote: true, type: :json, method: :delete }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
-                        <% else %>
-                          <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, tweet_likes_path(tweet), data: { remote: true, type: :json, method: :post }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
-                        <% end %>
-                        &nbsp;&nbsp;<%= tweet.likes.count %>
-                  </div>
-                </div>
-            </div>
+
+<%= render partial: 'header_info' %>
+  <div class="container-flex tweet-index-margin">
+    <br>
+    <br>
+    <b><h2>Latest tweets from users you are following</h2></b>
+    <br>
+    <% current_user.following.reverse.each do |following| %>
+      <% following.tweets.reverse.each do |tweet| %>
+      <div class="row">
+        <div class="col-1">
+          <%= tweets_index_avatar(tweet) %>
         </div>
-        <br>
-        <hr />
-        <% end %>
+          <div class="col-10">
+            <strong><%= tweet.user.username %></strong>&nbsp;&nbsp;
+            <div class="text-inline-tweet">
+              @<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %>
+              <%= link_to "Profile", followinguser_path(following.id), class: "btn btn-outline-primary btn-sm rounded-pill tweet_right_options" %>
+            </div>
+            <br>
+            <%= tweet.content %>
+            
+            <br>
+            <br>
+            <div class="row tweet-buttons">
+              <div class="col-1">
+              <%= link_to '<i class="fas fa-comment-dots"></i>'.html_safe, tweet_path(tweet.id), class: "btn btn-sm btn-primary rounded-pill" %>&nbsp;&nbsp;<%= tweet.comments.count %>
+              </div>
+                <div class="col-1">
+                  <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
+                    <% if pre_like %>
+                      <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, tweet_like_path(tweet, pre_like), data: { remote: true, type: :json, method: :delete }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
+                      <% else %>
+                        <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, tweet_likes_path(tweet), data: { remote: true, type: :json, method: :post }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
+                      <% end %>
+                      &nbsp;&nbsp;<%= tweet.likes.count %>
+                </div>
+              </div>
+          </div>
+      </div>
+      <br>
+      <hr />
       <% end %>
-</div>
+    <% end %>
+  </div>

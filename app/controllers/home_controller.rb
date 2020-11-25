@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tweet = Tweet.find(params[:id])
+    @tweets = Tweet.all
     @comment = Comment.new
   end
 end

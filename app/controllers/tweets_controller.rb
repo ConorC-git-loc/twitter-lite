@@ -12,12 +12,27 @@ class TweetsController < ApplicationController
     @tweets = @q.result(distinct: true).paginate(page: params[:tweets_page], per_page: 10).order(created_at: :desc)
     @tweet = Tweet.new
     @comment = Comment.new
+    @comments = Comment.all
     @users = User.all
     @users = @search.result(distinct: true).paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
       format.js
     end
+  end
+
+  def pin
+    @tweet = Tweet.find(params[:id])
+    @tweet.toggle!(:pin)
+    flash[:notice] = "Pinned tweet!"
+    redirect_to user_path(current_user.id)
+  end
+
+  def unpin
+    @tweet = Tweet.find(params[:id])
+    @tweet.toggle!(:pin)
+    flash[:notice] = "Unpinned tweet!"
+    redirect_to user_path(current_user.id)
   end
 
 
@@ -87,6 +102,6 @@ class TweetsController < ApplicationController
   end
 
   def tweet_params
-    params.require(:tweet).permit(:user_id, :content, { comments: [:body] })
+    params.require(:tweet).permit(:user_id, :content, :pin, { comments: [:body] })
   end
 end

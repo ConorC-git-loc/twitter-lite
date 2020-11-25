@@ -567,7 +567,7 @@ background-color: #82B1FF;
 }
 
 .text-small{
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .tweet-show-comment {
@@ -610,6 +610,15 @@ background-color: #82B1FF;
 
 .follower-details-av {
   display: inline-block;
+}
+
+.retweet-border {
+  border: 0.5px solid gray;
+  border-radius: 0.75rem;
+  margin-bottom: 20px;
+  width: 650px;
+  border-color: rgba(0, 0, 0, 0.1);
+  padding-left: 50px;
 }
 
 .tweet-modal-text {
@@ -2960,6 +2969,12 @@ fieldset:disabled a.btn {
   background-color: #E2F1F8;
 }
 
+.btn-retweeted {
+  color: #007bff;
+  background-color: #fff;
+  border-color: #007bff;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #007bff;
@@ -3264,6 +3279,14 @@ fieldset:disabled a.btn {
 .tweet-index-margin-profile {
   margin-left: 30px;
   margin-right: 30px;
+}
+
+.btn-following {
+  color: white;
+  border-color: #007bff;
+  background-color:#007bff;
+  font-weight: bold;
+  width: 100px;
 }
 
 .btn-outline-following {

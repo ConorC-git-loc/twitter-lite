@@ -35,11 +35,44 @@
       </p>
       <hr/>
 
+      <!-- pinned tweet container -->
+
+      <% @user.tweets.where(pin: true).each do |tweet| %>
+        <div class="block">
+          <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
+            <div class="inner">
+              <div class="row">
+                <div class="col-1">
+                  <%= tweets_index_avatar(tweet) %>
+                </div>
+                <div class="col-8">
+                  <p class="text-small small-text-grey">
+                    <strong>
+                      <i class="fas fa-thumbtack"></i> Pinned tweet
+                    </strong>
+                  </p>
+                  <p class="inline">
+                  <b><%= tweet.user.username %></b>&nbsp;
+                  <div class="text-muted">
+                    @<%= tweet.user.handle %>&nbsp;
+                    <%= time_ago_in_words(tweet.created_at) %>
+                  </div>
+                  </p>
+                  <p><%= tweet.content %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <br>
+        <br>
+
+
       <div class="scrollable scrollbar-light-blue">
         <% if @user.tweets.count == 0 %>
           <b><%= @user.username %> has not tweeted yet</b>
         <% else %>
-        <% @user.tweets.reverse.each do |tweet| %>
+        <% @user.tweets.order('tweets.created_at DESC').each do |tweet| %>
         <div class="block">
         <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
           <div class="inner">

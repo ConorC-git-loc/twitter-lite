@@ -13,7 +13,11 @@
             <%= render partial: 'index_tweet_form' %>
           </div>
         </div>
-        <%= tweeted_num_text (@counted_tweets) %>
+        <p class="inline">
+          <%= tweeted_num_text (@counted_tweets) %>
+          &nbsp;&nbsp;&nbsp;<b><%= current_user.tweets.count(:retweet_id) %></b> Retweets
+        </p>
+        <br>
         <hr/>
 
 
@@ -45,8 +49,12 @@
 
       
         <%= render partial: 'search_tweets' %>
+
+        <%= link_to "Hello", :remote => true %>
         
-        <%= render partial: 'tweets_index', locals: { tweets: @tweets } %>
+        <div id="replies">
+          <%= render partial: 'tweets_index', locals: { tweets: @tweets } %>
+        </div>
 </div>
 
 
