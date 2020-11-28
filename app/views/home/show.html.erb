@@ -38,7 +38,7 @@
       <!-- pinned tweet container -->
 
       <% @user.tweets.where(pin: true).each do |tweet| %>
-        <div class="block">
+        <div class="tweet-block-profile">
           <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
             <div class="inner">
               <div class="row">
@@ -58,7 +58,11 @@
                     <%= time_ago_in_words(tweet.created_at) %>
                   </div>
                   </p>
-                  <p><%= tweet.content %></p>
+                  <p>
+                    <div class="trix-content attachment">
+                      <%= tweet.body %>
+                    </div>
+                  </p>
                 </div>
               </div>
             </div>
@@ -73,7 +77,7 @@
           <b><%= @user.username %> has not tweeted yet</b>
         <% else %>
         <% @user.tweets.order('tweets.created_at DESC').each do |tweet| %>
-        <div class="block">
+        <div class="tweet-block-profile">
         <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
           <div class="inner">
             <div class="row">
@@ -88,7 +92,11 @@
                   <%= time_ago_in_words(tweet.created_at) %>
                 </div>
                 </p>
-                <p><%= tweet.content %></p>
+                <p>
+                  <div class="trix-content">
+                    <%= tweet.body %>
+                  </div>
+                </p>
               </div>
             </div>
           </div>

@@ -5,22 +5,14 @@
       <!-- tweet container -->
 
       <% if tweet.retweet_id.blank? %>
-      <div class="block">
+      <div class="block"> 
         <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
         <div class="inner">
           <p class="tweet_right_options tweet_break">
 
           
 
-
-            <% if current_user.id != tweet.user.id %> 
-              <% if current_user.following?(tweet.user) %>
-                  <%= link_to "Unfollow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :delete }, :class => "follow-btn btn btn-md btn-outline-primary rounded-pill" %>
-                <% else %>
-                  <%= link_to "Follow", relationships_path(user_id: tweet.user), data: { remote: true, type: :json, method: :post }, :class => "follow-btn btn btn-md btn-outline-primary rounded-pill" %>
-              <% end %>
-            <% end %>
-            &nbsp;<%= link_to "Profile", thisuser_path(tweet.user.id), class: "btn btn-outline-primary btn-md rounded-pill tweet_right_options" %>
+            
 
             <!-- tweet options dropdown -->
 
@@ -28,12 +20,14 @@
               <a class="retweet-index btn btn-sm btn-primary rounded-pill tweet-right-options" href="#" role="button" id="tweetDropdownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                <i class="fas fa-ellipsis-h"></i>
               </a>
+              <!-- dropdown options -->
               <div class="dropdown-menu" aria-labelledby="tweetDropdownButton">
                 <% if current_user.id == tweet.user.id %>
                   <%= link_to '<i class="far fa-trash-alt"></i> Delete'.html_safe, tweet_path(tweet), method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item", style: "color:red;" %>
-
                   <%= update_pin(tweet) %>
                 <% end %>
+                <%= follow_link(tweet) %>
+                <%= link_to "Profile", thisuser_path(tweet.user.id), class: "dropdown-item" %>
                 <a class="dropdown-item" href="#"><i class="fas fa-chart-bar"></i>&nbsp;View Activity</a>
               </div>
             </div>
@@ -57,9 +51,11 @@
               </p>
               <% end %>
               <br>
-              <p>
-                <%= tweet.content %>
-              </p>
+              
+                
+                  <%= tweet.body %>
+                
+              
               <br>
             </div>
           </div>
@@ -69,7 +65,7 @@
 
         <!-- like buttons -->
         <div class="row tweet-buttons">
-          <div class="col-1">           
+          <div class="col-2">           
             <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
               <% if pre_like %>
                 <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, tweet_like_path(tweet, pre_like), data: { remote: true, method: :delete }, :id => "like_id", :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
@@ -82,7 +78,7 @@
         
 
 
-          <div class="col-1">
+          <div class="col-2">
             <% unless tweet.retweet_id == tweet.id %>
             <%= link_to '<i class="fas fa-retweet"></i>'.html_safe, retweet_tweet_path(tweet.id), class: "retweet-index btn btn-sm btn-primary rounded-pill", method: :post %>&nbsp;&nbsp;<%= tweet.retweets.count %>
             <% else %>
@@ -93,7 +89,7 @@
             
           
 
-          <div class="col-1">
+          <div class="col-2">
               <button type="button" class="btn btn-sm btn-primary rounded-pill" data-toggle="modal" data-target="#exampleModalCenter#<%= tweet.id %>">
                   <i class="fas fa-comment-dots"></i>
                 </button> &nbsp;&nbsp;<%= tweet.comments.count %>
@@ -193,7 +189,7 @@
                   @<%= tweet.source_tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.source_tweet.created_at) %>  
                 </div>
               <p>
-                <%= tweet.content %>
+                <%= tweet.content.html_safe %>
               </p>
               <br>
             </div>
@@ -204,7 +200,7 @@
 
         <!-- retweet like buttons -->
         <div class="row tweet-buttons">
-          <div class="col-1">           
+          <div class="col-2">           
             <% pre_like = tweet.source_tweet.likes.find { |like| like.user_id == current_user.id} %>
               <% if pre_like %>
                 <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, tweet_like_path(tweet.source_tweet, pre_like), data: { remote: true, type: :json, method: :delete }, :class => "like-btn btn btn-primary btn-sm rounded-pill" %>
@@ -217,7 +213,7 @@
         
 
 
-          <div class="col-1">
+          <div class="col-2">
             <% unless tweet.retweet_id.blank? || tweet.user_id == current_user.id %>
               <%= link_to '<i class="fas fa-retweet"></i>'.html_safe, retweet_tweet_path(tweet.source_tweet_id), class: "retweet-index btn btn-sm btn-primary rounded-pill", method: :post %>&nbsp;&nbsp;<%= tweet.source_tweet.retweets.count %>
             <% else %>
@@ -232,7 +228,7 @@
             
           
 
-          <div class="col-1">
+          <div class="col-2">
               <button type="button" class="btn btn-sm btn-primary rounded-pill" data-toggle="modal" data-target="#exampleModalCenter#<%= tweet.id %>">
                   <i class="fas fa-comment-dots"></i>
                 </button> &nbsp;&nbsp;<%= tweet.source_tweet.comments.count %>

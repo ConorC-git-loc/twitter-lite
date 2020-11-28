@@ -16,6 +16,9 @@ require("jquery")
 //= require popper
 //= require bootstrap-sprockets
 
+require("trix")
+require("@rails/actiontext")
+
 
 
 
@@ -32,7 +35,7 @@ require("jquery")
 
 // follow button tweets#index
 
-$(document).on('ajax:success', '.follow-btn', function(e) {
+$(document).on('ajax:success', '.follow', function(e) {
   let data = e.detail[0];
   let method = this.dataset.method === 'post' ? 'delete' : 'post';
   let txt = {
@@ -40,7 +43,7 @@ $(document).on('ajax:success', '.follow-btn', function(e) {
     delete: 'Unfollow'
   }[method];
   //loop
-  $(`.follow-btn[href="${this.getAttribute('href')}"]`).each(function() {
+  $(`.follow[href="${this.getAttribute('href')}"]`).each(function() {
     this.dataset.method = method;
     $(this).text(`${txt}`);
   });
@@ -78,6 +81,7 @@ $(document).on('div#comments').on('div#comments');
 });
 
 
+
 //sidebar
 
 
@@ -105,3 +109,6 @@ $(document).click(function(e) {
 
 
 
+
+require("trix")
+require("@rails/actiontext")

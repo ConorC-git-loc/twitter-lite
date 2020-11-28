@@ -8,7 +8,7 @@ class TweetsController < ApplicationController
   end
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.with_rich_text_body_and_embeds
     @tweets = @q.result(distinct: true).paginate(page: params[:tweets_page], per_page: 10).order(created_at: :desc)
     @tweet = Tweet.new
     @comment = Comment.new
@@ -102,6 +102,6 @@ class TweetsController < ApplicationController
   end
 
   def tweet_params
-    params.require(:tweet).permit(:user_id, :content, :pin, { comments: [:body] })
+    params.require(:tweet).permit(:user_id, :body, :pin, { comments: [:body] })
   end
 end

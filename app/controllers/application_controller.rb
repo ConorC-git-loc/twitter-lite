@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     @q = Tweet.ransack(params[:q])
   end
 
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[username handle about])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[username avatar handle about])

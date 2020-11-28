@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
     redirect_to @tweet
   end
 
-
   private
 
   def comment_params

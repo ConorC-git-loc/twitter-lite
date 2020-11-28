@@ -1,12 +1,16 @@
 
 <%= render partial: 'header_info' %>
-  <div class="container-flex tweet-index-margin">
+  <div class="container-flex tweet-index-margin top-margin">
     <br>
     <br>
     <b><h2>Latest tweets from users you are following</h2></b>
     <br>
     <% current_user.following.reverse.each do |following| %>
       <% following.tweets.reverse.each do |tweet| %>
+      <div class="block"> 
+        <a class="overlay" href="<%= tweet_path(tweet.id) %>"></a>
+        <div class="inner">
+          <p class="tweet_right_options tweet_break">
       <div class="row">
         <div class="col-1">
           <%= tweets_index_avatar(tweet) %>
@@ -17,10 +21,11 @@
               @<%= tweet.user.handle %>&nbsp; · &nbsp;<%= time_ago_in_words(tweet.created_at) %>
               <%= link_to "Profile", followinguser_path(following.id), class: "btn btn-outline-primary btn-sm rounded-pill tweet_right_options" %>
             </div>
-            <br>
-            <%= tweet.content %>
+          </p>
+            <div class="trix-content">
+              <%= tweet.content.html_safe %>
+            </div>
             
-            <br>
             <br>
             <div class="row tweet-buttons">
               <div class="col-1">
@@ -40,6 +45,8 @@
       </div>
       <br>
       <hr />
+      </div>
+      </div>
       <% end %>
     <% end %>
-  </div>
+  
